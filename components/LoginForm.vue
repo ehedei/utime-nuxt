@@ -70,21 +70,15 @@ export default {
       }
 
       try {
-        const response = await this.$auth.loginWith('local', { data: userData })
-        this.$axios.setToken(response.data.token)
-        const user = {
-          email: response.data.email,
-          username: response.data.username,
-          id: response.data.id,
-          role: response.data.role,
-        }
-
-        this.$auth.setUser(user)
+        await this.$auth.loginWith('local', { data: userData })
         this.$router.push('/home')
       } catch (err) {
-        console.log(err)
+        if (err.response.status === 401) {
+          alert('User and password do not match') // TODO hay que hacer un mensaje
+        } else {
+          alert('Try again') // TODO hay que hacer un mensaje
+        }
       }
-
     },
   },
 }
