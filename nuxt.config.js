@@ -22,6 +22,11 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/booking.service.js',
+    '~/plugins/doctor.service.js',
+    '~/plugins/specialty.service.js',
+    '~/plugins/user.service.js',
+    '~/plugins/appointments.service.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
