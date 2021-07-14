@@ -71,6 +71,7 @@ export default {
 
       try {
         await this.$auth.loginWith('local', { data: userData })
+
         this.$router.push('/home')
       } catch (err) {
         if (err.response.status === 401) {
