@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-
+    <BasicNavBar></BasicNavBar>
     <v-main class="app-bg">
       <v-container fluid fill-height>
         <Nuxt />

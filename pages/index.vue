@@ -1,5 +1,5 @@
 <template>
-<v-container fill-height>
+  <v-container fill-height>
     <v-row>
       <v-col cols="12">
         <h1 class="white--text text-center">UTime</h1>
@@ -21,7 +21,8 @@
     </v-row>
     <v-row class="d-flex justify-center align-center">
       <v-col cols="12" sm="6" md="4">
-        <v-btn v-if="auth"
+        <v-btn
+          v-if="auth"
           block
           color="white"
           rounded
@@ -61,7 +62,7 @@ export default {
   data() {
     return {
       logo: '/img/main-logo.svg',
-      auth: this.$auth.loggedIn
+      auth: this.$auth.loggedIn,
     }
   },
 }
