@@ -51,9 +51,19 @@ export default {
       return moment(date) >= moment().startOf("day");
     },
     async selectDate() {
+      const now = moment()
+      const date = moment(this.date)
+      let textDate
+
+      if (now.diff(date, 'days') === 0) {
+        textDate = now.utc().toString()
+      } else {
+        textDate = date.toString()
+      }
+
       const appointments = await this.$getFreeAppointmentsByDateAndDoctor(
         this.doctorId,
-        this.date
+        textDate
       );
       this.appointments = appointments;
       this.appointmentVisible = true;
