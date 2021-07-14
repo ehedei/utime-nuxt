@@ -116,7 +116,6 @@
 <script>
 import moment from "moment";
 import { format, parseISO } from "date-fns";
-// import signup from "../services/signUpService";
 
 export default {
   name: "SignUpForm",
@@ -157,7 +156,7 @@ export default {
       }
     },
     async signup() {
-      /* const newUser = {
+      const newUser = {
         username: this.username,
         email: this.email,
         password: this.password,
@@ -168,8 +167,8 @@ export default {
         lastName: this.lastName,
       };
 
-      const response = await signup.signUp(newUser);
-      if(response) this.$router.push({ name: 'Login' }) */
+      const response = await this.$signup(newUser);
+      if(response) this.$router.push('/login')
     }
   },
 };
