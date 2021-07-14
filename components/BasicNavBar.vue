@@ -72,5 +72,6 @@
 
 #nav-bar.v-app-bar--is-scrolled {
   background-image: url('/img/navbar/profile.svg');
+  background-color: red;
 }
 </style>

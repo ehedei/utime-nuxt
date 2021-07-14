@@ -10,7 +10,6 @@
             today ? 'px-4' : '',
             today ? 'px-sm-16' : '',
           ]"
-          data-aos="zoom-in"
         >
           <v-card-title v-if="today" class="justify-center white--text pt-8"
             >Today's Appointments</v-card-title

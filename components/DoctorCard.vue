@@ -1,5 +1,5 @@
 <template>
-  <v-card data-aos="zoom-in"
+  <v-card
     width="150px"
     class="ma-4 ma-sm-6 ma-md-8 elevation-4 d-flex flex-column justify-space-between"
     @click="selectDoctor"

@@ -2,7 +2,6 @@
   <v-card
     width="150px"
     class="ma-4 ma-sm-6 ma-md-8 elevation-4"
-    data-aos="zoom-in"
     @click="selectSpecialty"
   >
     <v-card-text class="text-center justify-center">

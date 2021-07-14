@@ -3,7 +3,6 @@
     <v-row class="d-flex justify-center">
       <v-col cols="12" sm="8" md="10" lg="10">
         <v-form
-          data-aos="fade-up"
           ref="form"
           v-model="valid"
           lazy-validation

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="indigo--text darken-4 my-4 rounded-xl" data-aos="zoom-in">
+  <v-card class="indigo--text darken-4 my-4 rounded-xl">
     <v-card-title class="doctorColor justify-center">
       {{doctorsName}}
     </v-card-title>

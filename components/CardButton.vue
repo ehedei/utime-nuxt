@@ -1,5 +1,5 @@
 <template>
-  <v-card :to="to" class="cnt white rounded-xl" elevation="6" data-aos="zoom-in">
+  <v-card :to="to" class="cnt white rounded-xl" elevation="6">
     <v-card-text>
       <v-row justify="center">
         <div class="try rounded pa-1 elevation-2">
