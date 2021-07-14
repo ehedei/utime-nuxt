@@ -109,49 +109,73 @@
         </v-form>
       </v-col>
     </v-row>
+    <template>
+      <v-row justify="center">
+        <v-dialog v-model="dialog" persistent max-width="290">
+          <v-card>
+            <v-card-title class="text-h5"> Login </v-card-title>
+            <v-card-text>{{ message }}</v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="indigo darken-1" text @click="closeModal">
+                Accept
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-row>
+    </template>
   </v-container>
 </template>
 
 <script>
-import moment from "moment";
-import { format, parseISO } from "date-fns";
+import moment from 'moment'
+import { format, parseISO } from 'date-fns'
 
 export default {
-  name: "SignUpForm",
+  name: 'SignUpForm',
 
   data: () => ({
+    dialog: false,
+    message: '',
+    userCreated: false,
     valid: true,
     passwordview: true,
-    date: format(parseISO(new Date().toISOString()), "yyyy-MM-dd"),
-    password: "",
-    requiredRules: [(v) => !!v || "Field is required"],
-    email: "",
+    date: format(parseISO(new Date().toISOString()), 'yyyy-MM-dd'),
+    password: '',
+    requiredRules: [(v) => !!v || 'Field is required'],
+    email: '',
     emailRules: [
-      (v) => !!v || "E-mail is required",
+      (v) => !!v || 'E-mail is required',
       (v) =>
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
           v
-        ) || "Email must be valid",
+        ) || 'Email must be valid',
     ],
-    passwordrepeatRules: [
-      (v) => !!v || "Repeat password is required",
-    ],
-    username: "",
-    firstName: "",
-    lastName: "",
-    repeatpassword: "",
-    mobile: "",
+    passwordrepeatRules: [(v) => !!v || 'Repeat password is required'],
+    username: '',
+    firstName: '',
+    lastName: '',
+    repeatpassword: '',
+    mobile: '',
   }),
   computed: {
     computedDateFormattedMomentjs() {
-      return this.date ? moment(this.date).format("dddd, MMMM Do YYYY") : "";
+      return this.date ? moment(this.date).format('dddd, MMMM Do YYYY') : ''
     },
   },
   methods: {
+    closeModal() {
+      this.dialog = false
+
+      if(this.userCreated) {
+        this.$router.push('/login')
+      }
+    },
     validate() {
-      const validate = this.$refs.form.validate();
+      const validate = this.$refs.form.validate()
       if (validate) {
-        this.signup();
+        this.signup()
       }
     },
     async signup() {
@@ -164,13 +188,19 @@ export default {
 
         firtName: this.firstName,
         lastName: this.lastName,
-      };
+      }
 
-      const response = await this.$signup(newUser);
-      if(response) this.$router.push('/login')
-    }
+      try {
+        await this.$signup(newUser)
+        this.message = 'User created'
+        this.userCreated = true
+      } catch (error) {
+        this.message = 'Something goes wrong. Try again!'
+      }
+        this.dialog = true
+    },
   },
-};
+}
 </script>
 
 <style scoped>

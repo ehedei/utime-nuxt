@@ -36,6 +36,22 @@
         </v-form>
       </v-col>
     </v-row>
+    <template>
+      <v-row justify="center">
+        <v-dialog v-model="dialog" persistent max-width="290">
+          <v-card>
+            <v-card-title class="text-h5"> Login </v-card-title>
+            <v-card-text>{{ message }}</v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="indigo darken-1" text @click="dialog = false">
+                Accept
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-row>
+    </template>
   </v-container>
 </template>
 
@@ -44,6 +60,8 @@ export default {
   name: 'LoginForm',
 
   data: () => ({
+    dialog: false,
+    message: '',
     valid: true,
     password: '',
     passwordRules: [(v) => !!v || 'Password is required'],
@@ -73,14 +91,13 @@ export default {
         await this.$auth.loginWith('local', { data: userData })
 
         this.$router.push('/home')
-
       } catch (err) {
         if (err.response.status === 401) {
-          alert('User and password do not match') // TODO hay que hacer un mensaje
-
+          this.message = 'User and password do not match'
         } else {
-          alert('Try again') // TODO hay que hacer un mensaje
+          this.message = 'Something goes wrong. Try again!'
         }
+        this.dialog = true
       }
     },
   },
