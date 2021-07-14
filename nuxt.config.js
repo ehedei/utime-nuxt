@@ -74,24 +74,22 @@ export default {
       local: {
         token: {
           property: 'token',
-          global: true
+          global: true,
           // required: true,
-          // type: 'Bearer'
+          type: 'token'
         },
         user: {
           property: 'user',
-          autoFetch: false
+          autoFetch: true
         },
         endpoints: {
           login: { url: '/auth/login', method: 'post' },
           logout: false, // TODO
-          user: false // { url: '/user/profile', method: 'get' }
+          user: { url: '/user/profile', method: 'get' }
         },
         redirect: {
           login: '/login',
-          logout: '/login',
-          callback: '/home',
-          home: '/home'
+          logout: '/login'
         }
       }
     }
