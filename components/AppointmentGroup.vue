@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import AppointmentDetail from './AppointmentDetail.vue'
 export default {
   props: {
     today: Boolean,
@@ -27,8 +26,5 @@ export default {
       return this.appointments[0].appointment.doctor.specialties.map(el => el.name).join(', ')
     }
   },
-  components: {
-    AppointmentDetail
-  }
 };
 </script>

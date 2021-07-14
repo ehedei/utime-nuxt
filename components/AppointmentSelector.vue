@@ -14,13 +14,15 @@
         >
         </v-date-picker>
       </v-col>
+      <v-col cols="12">
       <AppointmentPicker
         :appointments="appointments"
         :date="date"
-        :visible="getVisibility"
+        :visible="appointmentVisible"
         @setPickerInvisible="appointmentVisible = !appointmentVisible"
         @saveAppointment="saveAppointment"
       ></AppointmentPicker>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -42,9 +44,6 @@ export default {
   computed: {
     minDate() {
       return moment().format("YYYY-MM-DD");
-    },
-    getVisibility() {
-      return this.appointmentVisible
     }
   },
   methods: {
@@ -52,7 +51,7 @@ export default {
       return moment(date) >= moment().startOf("day");
     },
     async selectDate() {
-      const appointments = await this.$getFreeAppointments(
+      const appointments = await this.$getFreeAppointmentsByDateAndDoctor(
         this.doctorId,
         this.date
       );

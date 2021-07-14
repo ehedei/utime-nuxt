@@ -59,20 +59,17 @@ export default {
     return {
       dialog: false,
       id: '',
-      visibility: this.visible
     }
   },
   methods: {
     setInvisible() {
-      // this.$emit('setPickerInvisible')
-      this.visibility = false
+      this.$emit('setPickerInvisible')
     },
     saveAppointment(id) {
       this.id = id
       this.dialog = true
     },
     getTime(appointment) {
-      console.log(appointment.start)
       return moment(appointment.start).format('LT')
     },
     confirmAppointment() {
@@ -81,6 +78,11 @@ export default {
       this.setInvisible()
     },
   },
+  computed: {
+    visibility() {
+      return this.visible
+    }
+  }
 }
 </script>
 

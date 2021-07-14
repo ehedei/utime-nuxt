@@ -73,9 +73,11 @@ export default {
         await this.$auth.loginWith('local', { data: userData })
 
         this.$router.push('/home')
+
       } catch (err) {
         if (err.response.status === 401) {
           alert('User and password do not match') // TODO hay que hacer un mensaje
+
         } else {
           alert('Try again') // TODO hay que hacer un mensaje
         }
