@@ -48,8 +48,18 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    'nuxt-socket-io'
   ],
+
+  io: {
+
+    sockets: [{
+      name: 'main',
+      default: true,
+      url: 'http://localhost:3003'
+    }]
+  },
 
   publicRuntimeConfig: {
     axios: {
@@ -94,6 +104,7 @@ export default {
       }
     }
   },
+
   router: {
     middleware: ['auth']
   },

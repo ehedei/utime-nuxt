@@ -24,6 +24,7 @@
     "date-fns": "^2.22.1",
     "moment": "^2.29.1",
     "nuxt": "^2.15.7",
+    "nuxt-socket-io": "^1.1.18",
     "vuetify": "^2.5.5"
   },
   "devDependencies": {

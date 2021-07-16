@@ -22,7 +22,7 @@
 
       <v-card-actions>
         <v-btn color="success">Click #1</v-btn>
-        <v-btn flat color="primary">Click #2</v-btn>
+        <v-btn text color="primary">Click #2</v-btn>
         <v-spacer></v-spacer>
       </v-card-actions>
     </v-card>
