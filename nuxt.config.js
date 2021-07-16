@@ -57,7 +57,7 @@ export default {
     sockets: [{
       name: 'main',
       default: true,
-      url: 'http://localhost:3003'
+      url: process.env.SOCKET_URL
     }]
   },
 
