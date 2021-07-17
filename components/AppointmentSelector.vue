@@ -56,9 +56,9 @@ export default {
       let textDate
 
       if (now.diff(date, 'days') === 0) {
-        textDate = now.utc().toString()
+        textDate = now.utc().format('LT')
       } else {
-        textDate = date.toString()
+        textDate = date.utc().format('LT')
       }
 
       const appointments = await this.$getFreeAppointmentsByDateAndDoctor(
