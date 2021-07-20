@@ -42,6 +42,7 @@ export default {
       ).map((doc) =>
         this.appointments.filter((el) => el.appointment.doctor._id === doc)
       );
+
     },
   },
   components: {

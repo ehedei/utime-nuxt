@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row class="d-flex justify-center">
-      <v-col cols="12" sm="8" md="10" lg="10">
+      <v-col>
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-text-field
             v-model="email"
@@ -73,11 +73,9 @@ export default {
         await this.$auth.loginWith('local', { data: userData })
 
         this.$router.push('/home')
-
       } catch (err) {
         if (err.response.status === 401) {
           alert('User and password do not match') // TODO hay que hacer un mensaje
-
         } else {
           alert('Try again') // TODO hay que hacer un mensaje
         }
@@ -92,32 +90,48 @@ export default {
   margin-top: 30px;
   margin-right: 0 !important;
   color: white !important;
-  background-color: #283593 !important;
+  background: linear-gradient(
+    -135deg,
+    rgb(49, 170, 186) 0%,
+    rgb(148, 56, 255) 100%
+  ) !important;
   width: 120px;
   height: 40px;
   border-radius: 12px;
+   text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
 }
 #btn2 {
   margin-top: 30px;
   margin-right: 0 !important;
   color: white !important;
   background-color: transparent !important;
-  font-size: 12px;
+  font-size: 13px;
+   text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
 }
 .v-text-field >>> .v-input__slot {
-  background: rgba(255, 255, 255, 1) !important;
+  background: rgb(255, 255, 255) !important;
 }
 
 .v-text-field >>> .error--text {
-  color: rgba(0, 0, 0, 0.7) !important;
+  color: rgb(255, 255, 255) !important;
+  text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
+
 }
 .v-application .error--text {
-  caret-color: #000 !important;
+  caret-color: rgb(255, 0, 0) !important;
+  text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
 }
 .v-text-field >>> .v-label {
   color: rgba(0, 0, 0, 0.8) !important;
+  text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
+  font-size: 1rem;
+
 }
 .v-text-field >>> .v-messages__message {
   padding-left: 12px;
+}
+.v-text-field >>>.v-icon {
+    color: rgb(63, 63, 63) !important;
+    margin-right: 8px;
 }
 </style>
