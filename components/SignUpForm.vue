@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row class="d-flex justify-center">
-      <v-col cols="12" sm="6" md="4">
+      <v-col>
         <v-form
           ref="form"
           v-model="valid"
@@ -168,7 +168,7 @@ export default {
     closeModal() {
       this.dialog = false
 
-      if(this.userCreated) {
+      if (this.userCreated) {
         this.$router.push('/login')
       }
     },
@@ -197,7 +197,7 @@ export default {
       } catch (error) {
         this.message = 'Something goes wrong. Try again!'
       }
-        this.dialog = true
+      this.dialog = true
     },
   },
 }
@@ -205,13 +205,19 @@ export default {
 
 <style scoped>
 #btn {
+  margin-top: 30px;
   margin-right: 0 !important;
   color: white !important;
-  background-color: #283593 !important;
-  border-radius: 12px;
-  margin-bottom: 12px;
+  background: linear-gradient(
+    315deg,
+    rgb(49, 170, 186) 0%,
+    rgb(148, 56, 255) 100%
+  ) !important;
   width: 120px;
   height: 40px;
+  border-radius: 12px;
+  text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
+  margin-bottom: 10px;
 }
 .scroll {
   height: 50vh;
@@ -236,16 +242,25 @@ export default {
 .v-text-field >>> .v-input__slot {
   background: rgb(255, 255, 255) !important;
 }
+
 .v-text-field >>> .error--text {
-  color: rgba(0, 0, 0, 0.7) !important;
+  color: rgb(255, 255, 255) !important;
+  text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
 }
 .v-application .error--text {
-  caret-color: #000 !important;
+  caret-color: rgb(255, 0, 0) !important;
+  text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
 }
 .v-text-field >>> .v-label {
   color: rgba(0, 0, 0, 0.8) !important;
+  text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
+  font-size: 1rem;
 }
 .v-text-field >>> .v-messages__message {
   padding-left: 12px;
+}
+.v-text-field >>> .v-icon {
+  color: rgb(63, 63, 63) !important;
+  margin-right: 8px;
 }
 </style>

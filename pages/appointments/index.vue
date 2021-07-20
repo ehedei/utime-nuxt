@@ -5,10 +5,9 @@
       :today="today"
       :appointments="getAppointmentsFromToday"
     ></AppointmentList>
-    <AppointmentList class="mt-7"
-      :today="!today"
+    <AppointmentTimeline class="mt-7"
       :appointments="getNextAppointments"
-    ></AppointmentList>
+    ></AppointmentTimeline>
   </v-container>
 </template>
 
@@ -41,10 +40,13 @@ export default {
     },
     getNextAppointments() {
       const lastMinute = prepareDate(23, 59, 59);
-
-      return this.bookings.filter(
+      const Appointments = this.bookings.filter(
         (booking) => new Date(booking.appointment.start) > lastMinute
       );
+      Appointments.sort(function(a,b) {
+          return new Date(a.appointment.start) - new Date(b.appointment.start)
+        })
+      return Appointments
     },
   }
 };
