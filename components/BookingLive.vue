@@ -6,7 +6,7 @@
 export default {
   data() {
     return {
-      socket: null
+      socket: null,
     }
   },
   mounted() {
@@ -15,10 +15,10 @@ export default {
 
     this.socket = this.$nuxtSocket({
       name: 'main',
-      query: `token=${token}`
+      extraHeaders: { Authorization: `Bearer ${token}` },
     })
     /* Listen for events: */
-
+    this.socket.on('example', () => alert('Lalala'))
   },
 }
 </script>

@@ -53,7 +53,6 @@ export default {
   ],
 
   io: {
-
     sockets: [{
       name: 'main',
       default: true,

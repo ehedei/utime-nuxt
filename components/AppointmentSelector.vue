@@ -15,20 +15,20 @@
         </v-date-picker>
       </v-col>
       <v-col cols="12">
-      <AppointmentPicker
-        :appointments="appointments"
-        :date="date"
-        :visible="appointmentVisible"
-        @setPickerInvisible="appointmentVisible = !appointmentVisible"
-        @saveAppointment="saveAppointment"
-      ></AppointmentPicker>
+        <AppointmentPicker
+          :appointments="appointments"
+          :date="date"
+          :visible="appointmentVisible"
+          @setPickerInvisible="appointmentVisible = !appointmentVisible"
+          @saveAppointment="saveAppointment"
+        ></AppointmentPicker>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-const moment = require("moment");
+const moment = require('moment')
 
 export default {
   props: {
@@ -36,41 +36,39 @@ export default {
   },
   data() {
     return {
-      date: moment().format("YYYY-MM-DD"),
+      date: moment().format('YYYY-MM-DD'),
       appointments: [],
       appointmentVisible: false,
-    };
+    }
   },
   computed: {
     minDate() {
-      return moment().format("YYYY-MM-DD");
-    }
+      return moment().format('YYYY-MM-DD')
+    },
   },
   methods: {
     allowedDates: (date) => {
-      return moment(date) >= moment().startOf("day");
+      return moment(date) >= moment().startOf('day')
     },
     async selectDate() {
       const now = moment()
-      const date = moment(this.date)
-      let textDate
-
-      if (now.diff(date, 'days') === 0) {
-        textDate = now.utc().format('LT')
-      } else {
-        textDate = date.utc().format('LT')
-      }
+      const endDate = `${this.date} 23:59:59`
+      const startDate =
+        now.format('YYYY-MM-DD') === this.date
+          ? now.format('YYYY-MM-DD hh:mm:ss')
+          : `${this.date} 00:00:00`
 
       const appointments = await this.$getFreeAppointmentsByDateAndDoctor(
         this.doctorId,
-        textDate
-      );
-      this.appointments = appointments;
-      this.appointmentVisible = true;
+        startDate,
+        endDate
+      )
+      this.appointments = appointments
+      this.appointmentVisible = true
     },
     saveAppointment(id) {
-      this.$emit("saveAppointment", id);
+      this.$emit('saveAppointment', id)
     },
   },
-};
+}
 </script>
