@@ -12,7 +12,6 @@
         >
           <v-text-field
             dense
-            rounded
             filled
             prepend-inner-icon="mdi-account"
             v-model="username"
@@ -25,7 +24,6 @@
           <v-text-field
             filled
             dense
-            rounded
             prepend-inner-icon="mdi-email"
             v-model="email"
             class="inputtext"
@@ -37,7 +35,6 @@
             class="inputtext"
             filled
             dense
-            rounded
             prepend-inner-icon="mdi-lock"
             :type="passwordview ? 'password' : 'text'"
             :append-icon="passwordview ? 'mdi-eye-off' : 'mdi-eye-outline'"
@@ -51,7 +48,6 @@
           <v-text-field
             filled
             dense
-            rounded
             prepend-inner-icon="mdi-lock"
             :type="passwordview ? 'password' : 'text'"
             :append-icon="passwordview ? 'mdi-eye-off' : 'mdi-eye-outline'"
@@ -65,7 +61,6 @@
           <v-text-field
             filled
             dense
-            rounded
             prepend-inner-icon="mdi-rename-box"
             v-model="firstName"
             class="inputtext"
@@ -76,7 +71,6 @@
           <v-text-field
             filled
             dense
-            rounded
             prepend-inner-icon="mdi-rename-box"
             v-model="lastName"
             class="inputtext"
@@ -87,20 +81,18 @@
           <v-text-field
             filled
             dense
-            rounded
             prepend-inner-icon="mdi-cellphone"
             v-model="mobile"
-            class="app-inputtext"
+            class="app-inputtext inputtext"
             label="Mobile phone number"
             required
           ></v-text-field>
 
           <div class="d-flex justify-center pt-2 mt-2">
             <v-btn
-              elevation="4"
-              id="btn"
+              elevation="3"
+              class="button indigo"
               color="success"
-              class="mr-4"
               @click="validate"
             >
               SignUp
@@ -204,20 +196,15 @@ export default {
 </script>
 
 <style scoped>
-#btn {
-  margin-top: 30px;
-  margin-right: 0 !important;
-  color: white !important;
-  background: linear-gradient(
-    315deg,
-    rgb(49, 170, 186) 0%,
-    rgb(148, 56, 255) 100%
-  ) !important;
+.button {
+  margin-top: 10px;
+  color: rgb(255, 255, 255) !important;
   width: 120px;
   height: 40px;
   border-radius: 12px;
-  text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
+  text-shadow: rgb(0 0 0 / 70%) 2px 2px 2px;
   margin-bottom: 10px;
+  padding: 0%;
 }
 .scroll {
   height: 50vh;
@@ -231,16 +218,21 @@ export default {
 }
 
 ::-webkit-scrollbar {
-  width: 30px;
+   width: 10px; left:-100px;
 }
 ::-webkit-scrollbar-thumb {
-  border: 12px solid rgba(0, 0, 0, 0);
+  border: 2px solid rgba(0, 0, 0, 0);
   background-clip: padding-box;
   -webkit-border-radius: 100px;
   background-color: rgba(0, 0, 0, 0.15);
 }
+.v-form
 .v-text-field >>> .v-input__slot {
   background: rgb(255, 255, 255) !important;
+
+}
+.v-text-field >>> .v-input__slot::before {
+  border-style: none;
 }
 
 .v-text-field >>> .error--text {
@@ -262,5 +254,8 @@ export default {
 .v-text-field >>> .v-icon {
   color: rgb(63, 63, 63) !important;
   margin-right: 8px;
+}
+.inputtext {
+  border-radius: 10px;
 }
 </style>

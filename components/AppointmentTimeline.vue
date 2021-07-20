@@ -1,36 +1,47 @@
 <template>
-  <v-timeline  :dense="$vuetify.breakpoint.smAndDown" witdh="300px">
-    <v-timeline-item
-      v-for="(appointment, i) in appointmentsByDate"
-      :key="i"
-      color="#cd722e"
-      icon="mdi-calendar-clock"
+  <v-container>
+    <v-row>
+      <v-col>
+        <v-card>
+          <v-title>
+            <span class="title1">Your Appointments</span>
+          </v-title>
+          <v-text class="pa-4">
 
-    >
-      <v-card elevation="7" id="cards">
-        <v-card-title  class="text-h6 white--text justify-center mx-auto pa-4 indigo">
-          {{ appointment.date }}
-        </v-card-title>
-          <v-card>
-        <v-card-text class="white text--primary" >
-          <div
-            v-for="(a, i) in appointment.appointments"
-            :key="i"
-            class="text-center rounded pink lighten-5"
+        <v-timeline :dense="$vuetify.breakpoint.smAndDown" witdh="300px">
+          <v-timeline-item
+            v-for="(appointment, ind) in appointmentsByDate"
+            :key="ind"
+            color="#cd722e"
+            icon="mdi-calendar-clock"
           >
-          <p>
-            {{ a.appointment.doctor.name }}
-
-          </p>
-
-          </div>
-        </v-card-text>
-
-          </v-card>
-      </v-card>
-    </v-timeline-item>
-  </v-timeline>
-
+            <v-card id="cards" elevation="7">
+              <v-card-title
+                class="text-h6 white--text justify-center mx-auto pa-4 indigo"
+              >
+                {{ appointment.date }}
+              </v-card-title>
+              <v-card>
+                <v-card-text class="white text--primary">
+                  <div
+                    v-for="(a, i) in appointment.appointments"
+                    :key="i"
+                    class="text-center rounded pink lighten-5"
+                  >
+                    <p>
+                      {{ a.appointment.doctor.name }}
+                    </p>
+                  </div>
+                </v-card-text>
+              </v-card>
+            </v-card>
+          </v-timeline-item>
+        </v-timeline>
+          </v-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -68,4 +79,9 @@ export default {
 #cards {
   border-radius: 15px;
 }
+.title1 {
+  font-size: 50px;
+}
+
+
 </style>

@@ -10,7 +10,7 @@
             dense
             prepend-inner-icon="mdi-email"
             :rules="emailRules"
-            class="whitetext"
+            class="field"
             label="Email"
             required
           ></v-text-field>
@@ -20,6 +20,7 @@
             filled
             rounded
             dense
+            class="field"
             prepend-inner-icon="mdi-lock"
             :rules="passwordRules"
             type="password"
@@ -27,11 +28,11 @@
             required
           ></v-text-field>
           <div class="d-flex align-center flex-column">
-            <v-btn id="btn1" elevation="4" class="mr-4" @click="validate">
+            <v-btn class="button1 indigo" elevation="3" @click="validate">
               Login
             </v-btn>
 
-            <v-btn id="btn2" text class="mr-4"> Forgot your password? </v-btn>
+            <v-btn class="button2" text> Forgot your password? </v-btn>
           </div>
         </v-form>
       </v-col>
@@ -89,21 +90,16 @@ export default {
 </script>
 
 <style scoped>
-#btn1 {
+.button1 {
   margin-top: 30px;
   margin-right: 0 !important;
   color: white !important;
-  background: linear-gradient(
-    -135deg,
-    rgb(49, 170, 186) 0%,
-    rgb(148, 56, 255) 100%
-  ) !important;
   width: 120px;
   height: 40px;
   border-radius: 12px;
-  text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
+  text-shadow: rgb(0 0 0 / 50%) 2px 2px 2px;
 }
-#btn2 {
+.button2 {
   margin-top: 30px;
   margin-right: 0 !important;
   color: white !important;
@@ -134,5 +130,8 @@ export default {
 .v-text-field >>> .v-icon {
   color: rgb(63, 63, 63) !important;
   margin-right: 8px;
+}
+.field {
+  border-radius: 10px;
 }
 </style>
