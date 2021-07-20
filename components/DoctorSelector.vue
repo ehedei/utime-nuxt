@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="space-around">
       <DoctorCard
-        v-for="(doctor, idx) in specialty.doctors"
+        v-for="(doctor, idx) in getDoctors"
         :key="idx"
         :doctor="doctor"
         @doctorSelected="selectDoctor"
@@ -19,6 +19,15 @@ export default {
   methods: {
     selectDoctor(id) {
       this.$emit('selectDoctor', id)
+    }
+  },
+  computed: {
+    getDoctors() {
+      return this.specialty.doctors?.slice().sort((a, b) => {
+        const nameA = a.name.toLowerCase();
+        const nameB = b.name.toLowerCase();
+        return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
+      })
     }
   }
 };

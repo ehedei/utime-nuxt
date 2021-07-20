@@ -55,7 +55,7 @@ export default {
       const endDate = `${this.date} 23:59:59`
       const startDate =
         now.format('YYYY-MM-DD') === this.date
-          ? now.format('YYYY-MM-DD hh:mm:ss')
+          ? now.format('YYYY-MM-DD HH:mm:ss')
           : `${this.date} 00:00:00`
 
       const appointments = await this.$getFreeAppointmentsByDateAndDoctor(
