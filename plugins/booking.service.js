@@ -4,4 +4,5 @@ export default ({ $axios }, inject) => {
     appointment: appointmentId
   }))
   inject('getBookingByIdIntoUser', async (id, bookingId) => await $axios.$get(`/user/${id}/booking/${bookingId}`))
+  inject('getBookingById', async id => await $axios.$get(`/booking/${id}`))
 }

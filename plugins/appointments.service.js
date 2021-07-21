@@ -4,4 +4,7 @@ export default ({ $axios }, inject) => {
 
   inject('createAppointmentsIntoDoctor',
     async (doctorId, body) => await $axios.$post(`/doctor/${doctorId}/appointment/`, body))
+
+  inject('getAppointmentById',
+    async id => await $axios.$get(`/appointment/${id}`))
 }

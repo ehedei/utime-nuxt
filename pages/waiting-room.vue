@@ -10,7 +10,7 @@
       chips
       @change="selectDoctor"
     ></v-combobox>
-    <v-row>
+    <v-row justify="center">
       <Queue
         v-for="doctor in selectedDoctors"
         :key="doctor._id"
@@ -48,11 +48,11 @@ export default {
     },
   },
   mounted() {
-    const token = this.$auth.strategy.token.get().replace('token ', '')
+    const token = this.$auth.strategy.token.get()
 
     this.socket = this.$nuxtSocket({
       name: 'main',
-      extraHeaders: { Authorization: `Bearer ${token}` },
+      extraHeaders: { Authorization: token },
     })
   },
 }

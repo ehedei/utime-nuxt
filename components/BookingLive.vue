@@ -14,10 +14,10 @@ export default {
 
     this.socket = this.$nuxtSocket({
       name: 'main',
-      extraHeaders: { Authorization: `Bearer ${token}` },
+      extraHeaders: { Authorization: token },
     })
     /* Listen for events: */
-
+    this.socket.on('example', () => alert('Lalala'))
   },
 }
 </script>
