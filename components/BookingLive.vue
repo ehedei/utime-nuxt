@@ -10,15 +10,14 @@ export default {
     }
   },
   mounted() {
-    const token = this.$auth.strategy.token.get().replace('token ', '')
-    console.log(token)
+    const token = this.$auth.strategy.token.get()
 
     this.socket = this.$nuxtSocket({
       name: 'main',
       extraHeaders: { Authorization: `Bearer ${token}` },
     })
     /* Listen for events: */
-    this.socket.on('example', () => alert('Lalala'))
+
   },
 }
 </script>
