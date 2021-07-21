@@ -70,7 +70,7 @@ export default {
       this.dialog = true
     },
     getTime(appointment) {
-      return moment(appointment.start).format('LT')
+      return moment.utc(appointment.start).format('LT')
     },
     confirmAppointment() {
       this.$emit('saveAppointment', this.id)

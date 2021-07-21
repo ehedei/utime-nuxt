@@ -20,10 +20,10 @@ export default {
   },
   computed: {
     getTime() {
-      return moment(this.appointment.start).format("LT");
+      return moment.utc(this.appointment.start).format("LT");
     },
     getDate() {
-      return moment(this.appointment.start).format("DD/MM/YYYY");
+      return moment.utc(this.appointment.start).format("DD/MM/YYYY");
     },
     getRoute() {
       return `/appointments/${this.appointment.booking}`

@@ -54,8 +54,8 @@ export default {
   },
   computed: {
     isToday() {
-      const today = moment()
-      const start = moment(this.booking.appointment.start)
+      const today = moment.utc()
+      const start = moment.utc(this.booking.appointment.start)
       return today.diff(start, 'days') === 0
     },
   },

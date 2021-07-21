@@ -76,12 +76,12 @@ export default {
       this.socket.emit('no-show', this.actualAppointment, this.nextAppointment)
     },
     getTime(start) {
-      return moment(start).format('LT')
+      return moment.utc(start).format('LT')
     }
   },
   computed: {
     getDifference() {
-      const minutes = moment(this.actualAppointment.start).diff(this.actualAppointment.inAt, 'minutes')
+      const minutes = moment.utc(this.actualAppointment.start).diff(this.actualAppointment.inAt, 'minutes')
 
       const msg = minutes < 0 ? `Delay: ${minutes} minutes` : `Advance: ${minutes} minutes`
 

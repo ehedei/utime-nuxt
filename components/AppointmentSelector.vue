@@ -36,22 +36,22 @@ export default {
   },
   data() {
     return {
-      date: moment().format('YYYY-MM-DD'),
+      date: moment.utc().format('YYYY-MM-DD'),
       appointments: [],
       appointmentVisible: false,
     }
   },
   computed: {
     minDate() {
-      return moment().format('YYYY-MM-DD')
+      return moment.utc().format('YYYY-MM-DD')
     },
   },
   methods: {
     allowedDates: (date) => {
-      return moment(date) >= moment().startOf('day')
+      return moment.utc(date) >= moment.utc().startOf('day')
     },
     async selectDate() {
-      const now = moment()
+      const now = moment.utc()
       const endDate = `${this.date} 23:59:59`
       const startDate =
         now.format('YYYY-MM-DD') === this.date

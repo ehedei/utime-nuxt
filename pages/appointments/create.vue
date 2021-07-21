@@ -102,12 +102,12 @@ export default {
   },
   computed: {
     minDate() {
-      return moment().format('YYYY-MM-DD')
+      return moment.utc().format('YYYY-MM-DD')
     },
   },
   methods: {
     allowedDates: (date) => {
-      return moment(date) >= moment().startOf('day')
+      return moment.utc(date) >= moment.utc().startOf('day')
     },
     async create() {
       const body = {
