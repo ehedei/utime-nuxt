@@ -1,7 +1,7 @@
 <template>
   <v-hover>
     <template v-slot:default="{ hover }">
-      <v-card :to="to" class="cnt white rounded-xl" :elevation="hover ? 12 : 6">
+      <v-card :to="to" max-width="350px" class="cnt white rounded-xl" :elevation="hover ? 12 : 6">
         <v-card-text>
           <v-row justify="center">
             <div class="try rounded pa-1 elevation-2">

@@ -10,11 +10,6 @@
       height="60%"
       color="transparent"
     >
-      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
       <v-menu bottom left>
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon color="white" v-bind="attrs" v-on="on">
@@ -46,8 +41,14 @@
           </v-list-item-content>
         </v-card>
       </v-menu>
+
+      <v-toolbar-title>{{ title }}</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" app temporary light>
+    <v-navigation-drawer v-model="drawer" right app temporary light>
       <v-list nav dense>
         <v-list-item-group active-class="indigo--text text--accent-4">
           <v-list-item to="/home">
@@ -72,18 +73,27 @@
             <v-list-item-title>Appointments</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/appointments/new">
-            <v-list-item-icon>
+          <v-list-item to="/appointments/new" active-class="cyan--text text--darken-3">
+            <v-list-item-icon class="ml-4">
               <v-icon>mdi-pencil</v-icon>
             </v-list-item-icon>
             <v-list-item-title>New Appointment</v-list-item-title>
           </v-list-item>
-          <v-list-item v-if="user.role !== 'user'" to="/appointments/create">
-            <v-list-item-icon>
+
+          <v-list-item v-if="user.role !== 'user'" to="/appointments/create" active-class="cyan--text text--darken-3">
+            <v-list-item-icon class="ml-4">
               <v-icon>mdi-calendar</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Create Appointments</v-list-item-title>
           </v-list-item>
+
+          <v-list-item v-if="user.role !== 'user'" to="/waiting-room">
+            <v-list-item-icon>
+              <v-icon>mdi-room-service</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Waiting Room</v-list-item-title>
+          </v-list-item>
+
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>

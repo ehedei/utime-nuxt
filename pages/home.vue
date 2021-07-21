@@ -1,31 +1,11 @@
 <template>
   <v-container fluid class="pt-16">
     <v-row justify="center">
-      <v-col cols="12" sm="6" md="4" lg="3">
-        <CardButton
-          class="mb-14"
-          :to="toAppointments"
-          :title="appointmentsTitle"
-          :src="srcAppointments"
-        ></CardButton>
-      </v-col>
-    </v-row>
-    <v-row justify="center">
-      <v-col cols="12" sm="6" md="4" lg="3">
-        <CardButton
-          class="mb-14"
-          :to="toNewAppointment"
-          :title="newAppointmentTitle"
-          :src="srcNew"
-        ></CardButton>
-      </v-col>
-    </v-row>
-    <v-row justify="center" v-if="user.role !== 'user'">
-      <v-col cols="12" sm="6" md="4" lg="3">
-        <CardButton
-          :to="toCreateAppointments"
-          :title="createAppointmentsTitle"
-          :src="srcCreateAppointments"
+      <v-col cols="12" md="5" v-for="(route, i) in getRoutes" :key="i" class="ma-8 justify-center">
+        <CardButton class="mx-auto"
+          :to="route.to"
+          :title="route.title"
+          :src="route.icon"
         ></CardButton>
       </v-col>
     </v-row>
@@ -36,21 +16,44 @@
 export default {
   data() {
     return {
-      toNewAppointment: '/appointments/new', // { name: 'newAppointment', params: { id: this.userId } },
-      toAppointments: '/appointments', // { name: 'appointments', params: { id: this.userId } },
-      toCreateAppointments: '/appointments/create',
-      newAppointmentTitle: 'New Appointment',
-      appointmentsTitle: 'Appointments',
-      createAppointmentsTitle: 'Create Appointments',
-      srcNew: 'mdi-pencil',
-      srcAppointments: 'mdi-newspaper-variant',
-      srcCreateAppointments: 'mdi-calendar',
+      routes: [
+        {
+          icon: 'mdi-newspaper-variant',
+          to: '/appointments',
+          title: 'Appointments',
+          allUsers: true
+        },
+        {
+          icon: 'mdi-pencil',
+          to: '/appointments/new',
+          title: 'New Appointment',
+          allUsers: true
+        },
+        {
+          icon: 'mdi-calendar',
+          to: '/appointments/create',
+          title: 'Create Appointments',
+        },
+        {
+          icon: 'mdi-room-service-outline',
+          to: '/waiting-room',
+          title: 'Waiting Room',
+        },
+
+      ]
     }
   },
   computed: {
     user() {
       return this.$auth.user
     },
+    getRoutes() {
+      if(this.$auth.user.role === 'user') {
+        return this.routes.filter(el => el.allUsers)
+      } else {
+        return this.routes
+      }
+    }
   },
 }
 </script>
