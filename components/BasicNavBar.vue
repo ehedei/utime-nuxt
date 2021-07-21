@@ -74,14 +74,14 @@
           </v-list-item>
 
           <v-list-item to="/appointments/new" active-class="cyan--text text--darken-3">
-            <v-list-item-icon class="ml-4">
+            <v-list-item-icon class="ml-3">
               <v-icon>mdi-pencil</v-icon>
             </v-list-item-icon>
             <v-list-item-title>New Appointment</v-list-item-title>
           </v-list-item>
 
           <v-list-item v-if="user.role !== 'user'" to="/appointments/create" active-class="cyan--text text--darken-3">
-            <v-list-item-icon class="ml-4">
+            <v-list-item-icon class="ml-3">
               <v-icon>mdi-calendar</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Create Appointments</v-list-item-title>
