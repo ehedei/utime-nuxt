@@ -16,7 +16,7 @@
         <v-card-title class="text-center">{{ doctor.name }}</v-card-title>
         <v-card-text class="text-center justify-center">
           <div class="d-flex justify-center mb-6">
-            <v-img max-height="100" max-width="100" :src="image"></v-img>
+            <v-img max-height="100" max-width="100" :src="getImage"></v-img>
           </div>
         </v-card-text>
       </v-card>
@@ -31,8 +31,14 @@ export default {
   },
   data() {
     return {
-      image: '/img/doctor-xs.png',
+      image:
+        'https://res.cloudinary.com/dfuhm3pot/image/upload/v1626860442/utime/doctor/default_q20atq.png',
     }
+  },
+  computed: {
+    getImage() {
+      return this.doctor.image || this.image
+    },
   },
   methods: {
     selectDoctor() {

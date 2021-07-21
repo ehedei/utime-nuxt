@@ -7,7 +7,7 @@
   >
     <v-card-text class="text-center justify-center">
       <div class="d-flex justify-center mb-6">
-        <v-img max-height="100" max-width="100" :src="getURL"></v-img>
+        <v-img max-height="100" max-width="100" :src="specialty.image"></v-img>
       </div>
       <h2>{{ getTitle }}</h2>
     </v-card-text>
@@ -21,9 +21,6 @@ export default {
     specialty: Object,
   },
   computed: {
-    getURL() {
-      return `/img/specialities/${this.specialty.image}`
-    },
     getTitle() {
       return this.specialty.name.toUpperCase();
     },
