@@ -1,48 +1,47 @@
 <template>
-  <v-container fluid fill-height class="container1">
-    <v-row v-show="$vuetify.breakpoint.mdAndUp" class="row1">
-      <v-col cols="6" class="columns">
-        <v-container class="container2">
+  <v-container fluid fill-height class="container1 d-flex align-stretch">
+    <v-row class="row1">
+      <v-col cols="12" sm="6" class="columns">
+        <v-container fluid fill-height class="container2">
           <v-row justify="center" align-content="center">
             <v-col>
-              <h1 class="text-center name">CLINIC VITA</h1>
-              <p class="white--text text-center powered">Powered by Utime</p>
-              <p class="text-center Login">Login</p>
-            </v-col>
-          </v-row>
-          <v-row justify="center" align-content="center">
-            <v-col cols="6">
-              <LoginForm></LoginForm>
-            </v-col>
-          </v-row>
-          <v-row class="text-center" justify="center" align-content="center">
-            <v-col>
-              <NuxtLink to="/signup" class="link"
-                >Create a new account</NuxtLink
+              <h1
+                :class="[
+                  'text-center',
+                  $vuetify.breakpoint.xsOnly ? 'nameMobile' : 'name',
+                  $vuetify.breakpoint.smOnly ? 'nameSmall' : 'name',
+                ]"
               >
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-col>
-      <v-col cols="6"> </v-col>
-    </v-row>
-    <v-row v-show="$vuetify.breakpoint.smAndDown" class="row1">
-      <v-col cols="12" class="columns">
-        <v-container class="container2">
-          <v-row justify="center" align-content="center">
-            <v-col>
-              <h1 class="text-center name">CLINIC VITA</h1>
-              <p class="white--text text-center powered">Powered by Utime</p>
-              <p class="text-center Login">Login</p>
+                CLINIC VITA
+              </h1>
+              <p
+                :class="[
+                  'white--text',
+                  'text-center',
+                  $vuetify.breakpoint.xsOnly ? 'poweredMobile' : 'powered',
+                  $vuetify.breakpoint.smOnly ? 'poweredSmall' : 'powered',
+                ]"
+              >
+                Powered by Utime
+              </p>
             </v-col>
           </v-row>
           <v-row justify="center" align-content="center">
             <v-col cols="9">
+              <p
+                :class="[
+                  'text-center',
+                  $vuetify.breakpoint.xsOnly ? 'LoginMobile' : 'Login',
+                  $vuetify.breakpoint.smOnly ? 'LoginSmall' : 'Login',
+                ]"
+              >
+                Login
+              </p>
               <LoginForm></LoginForm>
             </v-col>
           </v-row>
-          <v-row class="text-center" justify="center" align-content="center">
-            <v-col>
+          <v-row class="text-center footer" justify="center">
+            <v-col class="footer">
               <NuxtLink to="/signup" class="link"
                 >Create a new account</NuxtLink
               >
@@ -57,9 +56,24 @@
 <script>
 export default {
   transition: {
-    name:'login',
-    mode: 'in-out',
+    name: 'login',
+    mode: 'out-in',
+  },
+  mounted() {
+    window.addEventListener('orientationchange', this.handleOrientationChange)
+  },
+  methods: {
+    handleOrientationChange() {
+      const orientation = window.screen.orientation.type
+      if (orientation === 'portrait-primary') {
+
+        console.log('portait')
+      } else if (orientation === 'landscape-primary') {
+
+        console.log('landscape')
+      }
     },
+  },
   layout: 'starter',
   auth: false,
 }
@@ -68,62 +82,71 @@ export default {
 <style scoped>
 .container1 {
   background-image: url('../static/img/background.jpg');
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
+
 .Login {
-  font-size: 2.5rem;
+  font-size: 3rem;
   text-shadow: rgb(0 0 0 / 20%) 2px 2px 2px;
-  margin-bottom: -40px;
   color: rgb(163, 202, 255);
   font-weight: bold;
+  margin-bottom: 4vh;
+  margin-top: -2vh;
 }
 .name {
   font-size: 4.5rem;
   text-shadow: rgb(0 0 0 / 20%) 3px 3px 3px;
-  color: rgb(198, 222, 255);
-}
-.nameSmall {
-  font-size: 2rem;
-}
-.LoginSmall {
-  font-size: 1.5rem;
-  margin-bottom: -10px;
-  text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
-  color: rgb(202, 255, 255);
-  font-weight: bold;
+  color: rgb(122, 177, 255);
+  margin-top: 5vh;
 }
 .powered {
-  margin-top: -10px;
   text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
   font-style: italic;
   font-size: 1.2rem;
+  margin-top: -1.5vh;
+}
+.nameMobile {
+  font-size: 10vw;
+  text-shadow: rgb(0 0 0 / 20%) 3px 3px 3px;
+  color: rgb(122, 177, 255);
+}
+.LoginMobile {
+  font-size: 9vw;
+  text-shadow: rgb(0 0 0 / 20%) 2px 2px 2px;
+  color: rgb(163, 202, 255);
+  margin-bottom: 5vh;
+  font-weight: bold;
+}
+.poweredMobile {
+  margin-top: -5px;
+  text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
+  font-style: italic;
+  font-size: 4vw;
+}
+.nameSmall {
+  font-size: 7.5vw;
+  text-shadow: rgb(0 0 0 / 20%) 3px 3px 3px;
+  color: rgb(122, 177, 255);
+}
+.LoginSmall {
+  font-size: 5vw;
+  text-shadow: rgb(0 0 0 / 20%) 2px 2px 2px;
+  color: rgb(163, 202, 255);
+  margin-bottom: 5vh;
+  font-weight: bold;
 }
 .poweredSmall {
   margin-top: -5px;
   text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
   font-style: italic;
-  font-size: 1rem;
-}
-
-.image {
-  width: 40vw;
+  font-size: 2.5vw;
 }
 
 .row1 {
-  height: 100vh;
   margin: 0;
 }
-.rowImage {
-  height: 100vh;
-}
-.giftColumn {
-  overflow: hidden;
-  height: 100vh;
-}
-.Video {
-  height: 100vh;
-}
+
 .columns {
   background: rgb(71, 68, 68);
   background: radial-gradient(
@@ -139,9 +162,8 @@ export default {
 }
 .container2 {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-content: space-around;
-  height: 80vh;
 }
 
 h1 {
@@ -153,31 +175,16 @@ h1 {
   color: white;
 }
 
-.login-enter-active,
-.login-leave-active {
-  position: absolute;
-  transition: all .3s ease;
+.login-enter-active, .login-leave-active {
+  transition: all .5s ease-out;
 }
-
-/* entering start */
 .login-enter {
-  right: -100%;
+ right: -100%;
 }
-
-/* entering end */
 .login-enter-to {
   right: 0;
 }
 
-/* leaving start */
-.login-leave {
-  opacity: 1;
-}
-
-/* leaving end */
-.login-leave-to {
-  opacity: 0;
-}
 </style>
 
 <style>

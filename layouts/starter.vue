@@ -24,4 +24,5 @@ h1 {
 .v-card__title {
   word-break: normal !important;
 }
+
 </style>

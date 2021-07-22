@@ -6,7 +6,7 @@
           ref="form"
           v-model="valid"
           lazy-validation
-          height="400px"
+          height="200px"
           class="scroll"
           @scroll.passive="onScroll"
         >
@@ -176,9 +176,9 @@ export default {
         email: this.email,
         password: this.password,
 
-        mobile: this.mobilePhone,
+        mobile: this.mobile,
 
-        firtName: this.firstName,
+        firstName: this.firstName,
         lastName: this.lastName,
       }
 
@@ -207,7 +207,7 @@ export default {
   padding: 0%;
 }
 .scroll {
-  height: 50vh;
+  height: 45vh;
   overflow-y: scroll;
   overflow-x: hidden;
 }
