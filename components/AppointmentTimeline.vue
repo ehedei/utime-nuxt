@@ -2,9 +2,9 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-card>
+        <v-card id="card1">
           <v-title>
-            <span class="title1">Your Appointments</span>
+            <p class="title1 text-center">Next Appointments</p>
           </v-title>
           <v-text class="pa-4">
 
@@ -78,9 +78,24 @@ export default {
 <style scoped>
 #cards {
   border-radius: 15px;
+  width: 90vw;
+  box-shadow: 0 !important;
 }
+#card1 {
+  box-shadow: none;
+  padding: 20px;
+  background-color: rgba(51, 59, 53, 0.24);
+  border-radius: 10px;
+}
+.row {
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+}
+
 .title1 {
   font-size: 50px;
+  color: white;
 }
 
 
