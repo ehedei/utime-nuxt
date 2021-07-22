@@ -14,19 +14,18 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon color="white" v-bind="attrs" v-on="on">
             <v-avatar>
-              <img v-if="user.image" :src="user.image" :alt="user.username" />
-              <v-icon v-else>mdi-account-circle</v-icon>
+              <v-icon>mdi-account-circle</v-icon>
             </v-avatar>
           </v-btn>
         </template>
         <v-card min-width="200px">
           <v-list-item-content class="justify-center">
             <div class="mx-auto text-center">
-              <v-avatar color="indigo darken-4 white--text my-2">
+              <v-avatar color="indigo darken-4 white--text my-2 elevation-3">
                 <img v-if="user.image" :src="user.image" :alt="user.username" />
                 <v-icon v-else color="white">mdi-account</v-icon>
               </v-avatar>
-              <h3>{{ user.username }}</h3>
+              <h3 class="mt-1">{{ user.username }}</h3>
               <p class="text-caption mt-1 mb-1">
                 {{ user.email }}
               </p>
