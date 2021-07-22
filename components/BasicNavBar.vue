@@ -128,14 +128,14 @@ export default {
 
 <style lang="scss" scoped>
 #nav-bar {
-  background-image: url('/img/navbar/svg.svg');
-  background-position: center bottom;
+  background-image: url('/img/navbar/wave.svg');
+  background-position: center top;
   background-size: 100% 100%;
   transition: 0.3s ease;
 }
 
 #nav-bar.v-app-bar--is-scrolled {
-  background-image: url('/img/navbar/profile.svg');
+  background-image: url('/img/navbar/dense.svg');
   background-color: red;
 }
 </style>
