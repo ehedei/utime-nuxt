@@ -159,7 +159,7 @@ export default {
 }
 
 .signUp-enter-active, .signUp-leave-active {
-  transition: all 0.5s ease-out;
+  transition: all 0.3s ease-out;
 }
 .signUp-enter {
  left: -100%;

@@ -176,7 +176,7 @@ h1 {
 }
 
 .login-enter-active, .login-leave-active {
-  transition: all .5s ease-out;
+  transition: all .3s ease-out;
 }
 .login-enter {
  right: -100%;

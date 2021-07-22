@@ -6,14 +6,34 @@
         <Nuxt />
       </v-container>
     </v-main>
-
   </v-app>
 </template>
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
 .app-bg {
-  background: white
+  background-image: radial-gradient(
+      circle at 34% 75%,
+      rgba(142, 142, 142, 0.06) 0%,
+      rgba(142, 142, 142, 0.06) 50%,
+      rgba(11, 11, 11, 0.06) 50%,
+      rgba(11, 11, 11, 0.06) 100%
+    ),
+    radial-gradient(
+      circle at 40% 51%,
+      rgba(12, 12, 12, 0.06) 0%,
+      rgba(12, 12, 12, 0.06) 50%,
+      rgba(242, 242, 242, 0.06) 50%,
+      rgba(242, 242, 242, 0.06) 100%
+    ),
+    radial-gradient(
+      circle at 50% 87%,
+      rgba(189, 189, 189, 0.06) 0%,
+      rgba(189, 189, 189, 0.06) 50%,
+      rgba(0, 0, 0, 0.06) 50%,
+      rgba(0, 0, 0, 0.06) 100%
+    ),
+    linear-gradient(90deg, hsl(35, 0%, 96%), hsl(35, 0%, 96%));
 }
 
 h1 {
