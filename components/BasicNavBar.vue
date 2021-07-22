@@ -33,19 +33,30 @@
                 {{ user.role }}
               </p>
               <v-divider class="my-3"></v-divider>
-              <v-btn depressed block text to="/home"> <v-icon class="me-1">mdi-account-box-outline</v-icon> Profile </v-btn>
+              <v-btn depressed block text to="/home">
+                <v-icon class="me-1">mdi-account-box-outline</v-icon> Profile
+              </v-btn>
               <v-divider class="my-3"></v-divider>
-              <v-btn depressed block text @click="logout"><v-icon class="me-1">mdi-exit-to-app</v-icon> Logout </v-btn>
+              <v-btn depressed block text @click="logout"
+                ><v-icon class="me-1">mdi-exit-to-app</v-icon> Logout
+              </v-btn>
             </div>
           </v-list-item-content>
         </v-card>
       </v-menu>
 
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
+      <v-toolbar-title class="d-flex"
+        ><v-img
+          max-height="42"
+          max-width="42"
+          class="mr-2"
+          src="/img/navbar/logo-navbar.svg"
+        ></v-img
+        ><span>{{ title }}</span></v-toolbar-title
+      >
 
       <v-spacer></v-spacer>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" right app temporary light>
       <v-list nav dense>
@@ -63,14 +74,21 @@
             <v-list-item-title>Appointments</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/appointments/new" active-class="cyan--text text--darken-3">
+          <v-list-item
+            to="/appointments/new"
+            active-class="orange--text text--darken-3"
+          >
             <v-list-item-icon class="ml-3">
               <v-icon>mdi-pencil</v-icon>
             </v-list-item-icon>
             <v-list-item-title>New Appointment</v-list-item-title>
           </v-list-item>
 
-          <v-list-item v-if="user.role !== 'user'" to="/appointments/create" active-class="cyan--text text--darken-3">
+          <v-list-item
+            v-if="user.role !== 'user'"
+            to="/appointments/create"
+            active-class="cyan--text text--darken-3"
+          >
             <v-list-item-icon class="ml-3">
               <v-icon>mdi-calendar</v-icon>
             </v-list-item-icon>
@@ -83,7 +101,6 @@
             </v-list-item-icon>
             <v-list-item-title>Waiting Room</v-list-item-title>
           </v-list-item>
-
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -93,7 +110,7 @@
 <script>
 export default {
   data: () => ({
-    title: 'UTime',
+    title: 'Clinic Vita',
     drawer: false,
   }),
   computed: {

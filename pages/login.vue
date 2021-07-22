@@ -14,6 +14,7 @@
               >
                 CLINIC VITA
               </h1>
+
               <p
                 :class="[
                   'white--text',
@@ -66,10 +67,8 @@ export default {
     handleOrientationChange() {
       const orientation = window.screen.orientation.type
       if (orientation === 'portrait-primary') {
-
         console.log('portait')
       } else if (orientation === 'landscape-primary') {
-
         console.log('landscape')
       }
     },
@@ -175,16 +174,16 @@ h1 {
   color: white;
 }
 
-.login-enter-active, .login-leave-active {
-  transition: all .3s ease-out;
+.login-enter-active,
+.login-leave-active {
+  transition: all 0.3s ease-out;
 }
 .login-enter {
- right: -100%;
+  right: -100%;
 }
 .login-enter-to {
   right: 0;
 }
-
 </style>
 
 <style>
