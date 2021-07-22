@@ -92,7 +92,6 @@
             <v-btn
               elevation="3"
               class="button indigo"
-              color="success"
               @click="validate"
             >
               SignUp

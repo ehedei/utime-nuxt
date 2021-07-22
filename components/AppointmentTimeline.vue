@@ -2,41 +2,61 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-card id="card1">
-          <v-title>
-            <p class="title1 text-center">Next Appointments</p>
+        <v-card v-if="checkappointments" id="card1">
+          <v-title class="containerTitle">
+            <p class="title1">Next Appointments</p>
           </v-title>
           <v-text class="pa-4">
-
-        <v-timeline :dense="$vuetify.breakpoint.smAndDown" witdh="300px">
-          <v-timeline-item
-            v-for="(appointment, ind) in appointmentsByDate"
-            :key="ind"
-            color="#cd722e"
-            icon="mdi-calendar-clock"
-          >
-            <v-card id="cards" elevation="7">
-              <v-card-title
-                class="text-h6 white--text justify-center mx-auto pa-4 indigo"
+            <v-timeline :dense="$vuetify.breakpoint.smAndDown" witdh="300px">
+              <v-timeline-item
+                v-for="(appointment, ind) in appointmentsByDate"
+                :key="ind"
+                color="#cd722e"
+                icon="mdi-calendar-clock"
               >
-                {{ appointment.date }}
-              </v-card-title>
-              <v-card>
-                <v-card-text class="white text--primary">
-                  <div
-                    v-for="(a, i) in appointment.appointments"
-                    :key="i"
-                    class="text-center rounded pink lighten-5"
+                <v-card id="cards" elevation="7">
+                  <v-card-title
+                    class="
+                      text-h6
+                      white--text
+                      justify-center
+                      mx-auto
+                      pa-4
+                      indigo
+                    "
                   >
-                    <p>
-                      {{ a.appointment.doctor.name }}
-                    </p>
-                  </div>
-                </v-card-text>
-              </v-card>
-            </v-card>
-          </v-timeline-item>
-        </v-timeline>
+                    {{ appointment.date }}
+                  </v-card-title>
+                  <v-card>
+                    <v-card-text class="white text--primary">
+                      <div
+                        v-for="(a, i) in appointment.appointments"
+                        :key="i"
+                        class="text-center rounded pink lighten-5"
+                      >
+                        <p>
+                          {{ a.appointment.doctor.name }}
+                        </p>
+                      </div>
+                    </v-card-text>
+                  </v-card>
+                </v-card>
+              </v-timeline-item>
+            </v-timeline>
+          </v-text>
+        </v-card>
+        <v-card v-else id="card1">
+          <v-title class="containerTitle">
+            <p class="title1">You don't have any appointment</p>
+          </v-title>
+          <v-text class="bannerContainer">
+            <v-banner class="curiosityBanner">
+              <p>Do you know that ...</p>
+              <p>One in every 1000 babies is born with a tooth.</p>
+              <template v-slot:actions>
+                <v-btn text color="primary" class="btn"> Next curiosity </v-btn>
+              </template>
+            </v-banner>
           </v-text>
         </v-card>
       </v-col>
@@ -50,7 +70,6 @@ export default {
   props: {
     appointments: Array,
   },
-  data: () => ({}),
   computed: {
     appointmentsByDate() {
       return Array.from(
@@ -71,6 +90,13 @@ export default {
           }
         })
     },
+    checkappointments() {
+      if (this.appointments.length === 0) {
+        return false
+      } else {
+        return true
+      }
+    },
   },
 }
 </script>
@@ -81,22 +107,43 @@ export default {
   width: 90vw;
   box-shadow: 0 !important;
 }
+.baby {
+  width: 150px;
+  height: 100px;
+}
 #card1 {
   box-shadow: none;
   padding: 20px;
-  background-color: rgba(51, 59, 53, 0.24);
   border-radius: 10px;
+  background-color: transparent;
 }
-.row {
-  width: 80vw;
+.curiosityBanner {
+  width: 60vw;
+  margin-top: 10vh;
+  color: rgb(40, 50, 143);
+  font-size: 1.2rem;
+}
+.bannerContainer {
   display: flex;
   justify-content: center;
 }
-
-.title1 {
-  font-size: 50px;
-  color: white;
+.containerTitle {
+  display: flex;
+  justify-content: center;
+}
+.row {
+  margin: 0;
+}
+.btn {
+  margin-bottom: 16px;
 }
 
-
+.title1 {
+  font-size: 40px;
+  color: rgb(40, 50, 143);
+  border-radius: 10px;
+  width: fit-content;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 </style>
