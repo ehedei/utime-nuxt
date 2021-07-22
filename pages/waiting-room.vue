@@ -33,6 +33,7 @@
 
 <script>
 export default {
+  middleware: ['advancedprivileges'],
   async asyncData(context) {
     try {
       const doctors = await context.$getDoctors()
