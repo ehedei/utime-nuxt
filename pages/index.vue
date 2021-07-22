@@ -12,7 +12,7 @@
           <em>Powered by Utime</em>
         </h2>
         <div class="mt-3">
-          <v-img height="45" width="45" :src="utimelogo"></v-img>
+          <v-img height="48" width="45" :src="utimelogo"></v-img>
         </div>
       </v-col>
     </v-row>

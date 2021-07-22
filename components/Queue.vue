@@ -40,9 +40,9 @@
           </v-list-item-action>
         </v-list-item>
 
-        <v-list-item v-if="nextAppointment" class="blue lighten-4">
+        <v-list-item v-if="nextAppointment" class="orange lighten-4">
           <v-list-item-action>
-            <v-btn fab small depressed color="primary">
+            <v-btn fab small depressed color="orange">
               <small>Next</small>
             </v-btn>
           </v-list-item-action>

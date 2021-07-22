@@ -45,7 +45,7 @@
         </v-card>
       </v-menu>
 
-      <v-toolbar-title class="d-flex"
+      <v-toolbar-title class="d-flex align-center pb-1"
         ><v-img
           max-height="42"
           max-width="42"
