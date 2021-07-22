@@ -11,11 +11,7 @@
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
 .app-bg {
-  background: linear-gradient(
-    0deg,
-    rgba(49, 118, 127, 1) 0%,
-    rgba(55, 161, 178, 1) 100%
-  );
+  background: rgb(122, 177, 255);
 }
 
 h1 {
@@ -28,4 +24,5 @@ h1 {
 .v-card__title {
   word-break: normal !important;
 }
+
 </style>

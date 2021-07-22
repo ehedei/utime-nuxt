@@ -1,18 +1,17 @@
 <template>
   <v-container>
     <v-row class="d-flex justify-center">
-      <v-col cols="12" sm="6" md="4">
+      <v-col>
         <v-form
           ref="form"
           v-model="valid"
           lazy-validation
-          height="400px"
+          height="200px"
           class="scroll"
           @scroll.passive="onScroll"
         >
           <v-text-field
             dense
-            rounded
             filled
             prepend-inner-icon="mdi-account"
             v-model="username"
@@ -25,7 +24,6 @@
           <v-text-field
             filled
             dense
-            rounded
             prepend-inner-icon="mdi-email"
             v-model="email"
             class="inputtext"
@@ -37,7 +35,6 @@
             class="inputtext"
             filled
             dense
-            rounded
             prepend-inner-icon="mdi-lock"
             :type="passwordview ? 'password' : 'text'"
             :append-icon="passwordview ? 'mdi-eye-off' : 'mdi-eye-outline'"
@@ -51,7 +48,6 @@
           <v-text-field
             filled
             dense
-            rounded
             prepend-inner-icon="mdi-lock"
             :type="passwordview ? 'password' : 'text'"
             :append-icon="passwordview ? 'mdi-eye-off' : 'mdi-eye-outline'"
@@ -65,7 +61,6 @@
           <v-text-field
             filled
             dense
-            rounded
             prepend-inner-icon="mdi-rename-box"
             v-model="firstName"
             class="inputtext"
@@ -76,7 +71,6 @@
           <v-text-field
             filled
             dense
-            rounded
             prepend-inner-icon="mdi-rename-box"
             v-model="lastName"
             class="inputtext"
@@ -87,20 +81,18 @@
           <v-text-field
             filled
             dense
-            rounded
             prepend-inner-icon="mdi-cellphone"
             v-model="mobile"
-            class="app-inputtext"
+            class="app-inputtext inputtext"
             label="Mobile phone number"
             required
           ></v-text-field>
 
           <div class="d-flex justify-center pt-2 mt-2">
             <v-btn
-              elevation="4"
-              id="btn"
+              elevation="3"
+              class="button indigo"
               color="success"
-              class="mr-4"
               @click="validate"
             >
               SignUp
@@ -168,7 +160,7 @@ export default {
     closeModal() {
       this.dialog = false
 
-      if(this.userCreated) {
+      if (this.userCreated) {
         this.$router.push('/login')
       }
     },
@@ -184,9 +176,9 @@ export default {
         email: this.email,
         password: this.password,
 
-        mobile: this.mobilePhone,
+        mobile: this.mobile,
 
-        firtName: this.firstName,
+        firstName: this.firstName,
         lastName: this.lastName,
       }
 
@@ -197,24 +189,25 @@ export default {
       } catch (error) {
         this.message = 'Something goes wrong. Try again!'
       }
-        this.dialog = true
+      this.dialog = true
     },
   },
 }
 </script>
 
 <style scoped>
-#btn {
-  margin-right: 0 !important;
-  color: white !important;
-  background-color: #283593 !important;
-  border-radius: 12px;
-  margin-bottom: 12px;
+.button {
+  margin-top: 10px;
+  color: rgb(255, 255, 255) !important;
   width: 120px;
   height: 40px;
+  border-radius: 12px;
+  text-shadow: rgb(0 0 0 / 70%) 2px 2px 2px;
+  margin-bottom: 10px;
+  padding: 0%;
 }
 .scroll {
-  height: 50vh;
+  height: 45vh;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -225,27 +218,44 @@ export default {
 }
 
 ::-webkit-scrollbar {
-  width: 30px;
+   width: 10px; left:-100px;
 }
 ::-webkit-scrollbar-thumb {
-  border: 12px solid rgba(0, 0, 0, 0);
+  border: 2px solid rgba(0, 0, 0, 0);
   background-clip: padding-box;
   -webkit-border-radius: 100px;
   background-color: rgba(0, 0, 0, 0.15);
 }
+.v-form
 .v-text-field >>> .v-input__slot {
   background: rgb(255, 255, 255) !important;
+
 }
+.v-text-field >>> .v-input__slot::before {
+  border-style: none;
+}
+
 .v-text-field >>> .error--text {
-  color: rgba(0, 0, 0, 0.7) !important;
+  color: rgb(255, 255, 255) !important;
+  text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
 }
 .v-application .error--text {
-  caret-color: #000 !important;
+  caret-color: rgb(255, 0, 0) !important;
+  text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
 }
 .v-text-field >>> .v-label {
   color: rgba(0, 0, 0, 0.8) !important;
+  text-shadow: rgb(0 0 0 / 20%) 1px 1px 1px;
+  font-size: 1rem;
 }
 .v-text-field >>> .v-messages__message {
   padding-left: 12px;
+}
+.v-text-field >>> .v-icon {
+  color: rgb(63, 63, 63) !important;
+  margin-right: 8px;
+}
+.inputtext {
+  border-radius: 10px;
 }
 </style>
