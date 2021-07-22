@@ -1,6 +1,6 @@
 <template>
   <v-card class="indigo--text darken-4 my-4 rounded-xl">
-    <v-card-title class="doctorColor justify-center">
+    <v-card-title class="justify-center">
       {{doctorsName}}
     </v-card-title>
     <v-card-subtitle class="text-center">

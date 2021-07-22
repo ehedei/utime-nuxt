@@ -6,7 +6,7 @@
           :today="today"
           :class="[
             today ? 'indigo darken-2 rounded-xl' : 'transparent',
-            today ? 'elevation-4' : 'elevation-0',
+            today ? 'elevation-6' : 'elevation-0',
             today ? 'px-4' : '',
             today ? 'px-sm-16' : '',
           ]"
@@ -31,7 +31,10 @@
 import AppointmentGroup from "./AppointmentGroup.vue";
 export default {
   props: {
-    today: Boolean,
+    today: {
+      type: Boolean,
+      default: true
+      },
     appointments: Array,
   },
   computed: {

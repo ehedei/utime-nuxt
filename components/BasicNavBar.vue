@@ -132,6 +132,7 @@ export default {
   background-position: center top;
   background-size: 100% 100%;
   transition: 0.3s ease;
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.5));
 }
 
 #nav-bar.v-app-bar--is-scrolled {
