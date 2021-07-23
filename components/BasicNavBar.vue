@@ -50,7 +50,7 @@
           max-height="42"
           max-width="42"
           class="mr-2"
-          src="/img/navbar/logo-navbar.svg"
+          src="https://res.cloudinary.com/dfuhm3pot/image/upload/v1627049153/utime/logos/vita-white_c35oav.svg"
         ></v-img
         ><span>{{ title }}</span></v-toolbar-title
       >
@@ -128,7 +128,7 @@ export default {
 
 <style lang="scss" scoped>
 #nav-bar {
-  background-image: url('/img/navbar/wave.svg');
+  background-image: url('https://res.cloudinary.com/dfuhm3pot/image/upload/v1627024892/utime/navbar/wave_bfcdaw.svg');
   background-position: center top;
   background-size: 100% 100%;
   transition: 0.3s ease;
@@ -136,7 +136,7 @@ export default {
 }
 
 #nav-bar.v-app-bar--is-scrolled {
-  background-image: url('/img/navbar/dense.svg');
+  background-image: url('https://res.cloudinary.com/dfuhm3pot/image/upload/v1627024892/utime/navbar/dense_crqrjk.svg');
   background-color: red;
 }
 </style>
