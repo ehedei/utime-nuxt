@@ -4,7 +4,7 @@
       <v-stepper-items>
         <v-stepper-content step="1" class="px-0">
           <v-card class="mb-12" color="transparent" flat>
-            <v-card-title class="justify-center white--text">Select a Specialty</v-card-title>
+            <v-card-title class="justify-center h1">Select a Specialty</v-card-title>
             <SpecialtySelector
               :specialties="specialties"
               @specialtySelected="assignSpecialty"
@@ -12,9 +12,9 @@
           </v-card>
           <div class="d-flex justify-center">
             <v-btn
-              color="white"
+              color="indigo"
               text
-              class="text-decoration-underline"
+              class="text-decoration-underline accent-4"
               @click="back"
             >
               Back
@@ -24,7 +24,7 @@
 
         <v-stepper-content step="2" class="px-0">
           <v-card class="mb-12" color="transparent" flat>
-            <v-card-title class="justify-center white--text">Choose your Doctor</v-card-title>
+            <v-card-title class="justify-center">Choose your Doctor</v-card-title>
             <DoctorSelector
               :specialty="specialty"
               @selectDoctor="assignDoctor"
@@ -32,9 +32,9 @@
           </v-card>
           <div class="d-flex justify-center">
             <v-btn
-              color="white"
+              color="indigo"
               text
-              class="text-decoration-underline"
+              class="text-decoration-underline accent-4"
               @click="e1--"
             >
               Back
@@ -44,7 +44,7 @@
 
         <v-stepper-content step="3" class="px-0">
           <v-card class="mb-12" color="transparent" flat>
-            <v-card-title class="justify-center white--text">Schedule your Appointment</v-card-title>
+            <v-card-title class="justify-center">Schedule your Appointment</v-card-title>
             <AppointmentSelector
               :doctorId="doctorId"
               @saveAppointment="saveAppointment"
@@ -53,10 +53,10 @@
 
           <div class="d-flex justify-center">
             <v-btn
-              color="white"
+              color="indigo"
               text
               @click="e1--"
-              class="text-decoration-underline"
+              class="text-decoration-underline accent-4"
             >
               Back
             </v-btn>
@@ -64,19 +64,19 @@
         </v-stepper-content>
       </v-stepper-items>
       <v-stepper-header>
-        <v-stepper-step :complete="e1 > 1" step="1" color="indigo darken-4">
+        <v-stepper-step :complete="e1 > 1" step="1" color="orange darken-4">
           <span class="text-center">Select a Specialty</span>
         </v-stepper-step>
 
         <v-divider></v-divider>
 
-        <v-stepper-step :complete="e1 > 2" step="2" color="indigo darken-4">
+        <v-stepper-step :complete="e1 > 2" step="2" color="orange darken-4">
           <span class="text-center">Choose your Doctor</span>
         </v-stepper-step>
 
         <v-divider></v-divider>
 
-        <v-stepper-step :complete="e1 > 3" step="3" color="indigo darken-4"
+        <v-stepper-step :complete="e1 > 3" step="3" color="orange darken-4"
           ><span class="text-center"
             >Schedule your Appointment</span
           ></v-stepper-step

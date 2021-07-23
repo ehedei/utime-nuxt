@@ -7,9 +7,17 @@
       item-text="name"
       label="Select Doctors"
       multiple
+      hide-selected
+      deletable-chips
       chips
+      filled
+      clearable
+      solo
+      background-color="white"
+      color="indigo"
       @change="selectDoctor"
-    ></v-combobox>
+    >
+    </v-combobox>
     <v-row justify="center">
       <Queue
         v-for="doctor in selectedDoctors"
@@ -25,6 +33,7 @@
 
 <script>
 export default {
+  middleware: ['advancedprivileges'],
   async asyncData(context) {
     try {
       const doctors = await context.$getDoctors()

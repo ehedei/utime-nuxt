@@ -7,7 +7,8 @@
           :min="minDate"
           :allowed-dates="allowedDates"
           elevation="4"
-          color="indigo darken-3"
+          header-color="indigo darken-3"
+          color="orange darken-4"
           first-day-of-week="1"
           full-width
           @change="selectDate"

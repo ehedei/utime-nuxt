@@ -1,19 +1,24 @@
 <template>
   <v-container fill-height>
     <v-row>
-      <v-col cols="12">
-        <h1 class="white--text text-center">UTime</h1>
+      <v-col cols="12" class="d-flex flex-column flex-sm-row justify-center align-center mt-10">
+        <v-img v-if="$vuetify.breakpoint.xsOnly" max-height="70" max-width="70" class="order-2 order-sm-1" :src="logo"></v-img>
+        <v-img v-else max-height="150" max-width="150" class="order-2 order-sm-1" :src="logo"></v-img>
+        <h1 class="indigo--text text--darken-3 text-center ml-sm-3 order-1 order-sm-2">CLINIC VITA</h1>
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" class="d-flex justify-center align-center">
-        <div>
-          <v-img height="150" width="150" :src="logo"></v-img>
+      <v-col cols="12" class="d-flex flex-column justify-center align-center ">
+        <h2 class="indigo--text text-center font-weight-medium">
+          <em>Powered by Utime</em>
+        </h2>
+        <div class="mt-3">
+          <v-img height="48" width="45" :src="utimelogo"></v-img>
         </div>
       </v-col>
     </v-row>
     <v-row class="d-flex justify-center align-center">
-      <v-col cols="12" class="white--text my-3">
+      <v-col cols="12" class="indigo--text my-3 text--darken-3">
         <p class="text-center">Get your appointments in time</p>
         <p class="text-center">Forget about queues</p>
         <p class="text-center">Be owner of your time</p>
@@ -21,33 +26,17 @@
     </v-row>
     <v-row class="d-flex justify-center align-center">
       <v-col cols="12" sm="6" md="4">
-        <v-btn
-          v-if="auth"
-          block
-          color="white"
-          rounded
-          class="cyan--text darken-5"
-          x-large
-          to="/home"
-        >
+        <v-btn v-if="auth" block color="indigo" dark rounded x-large to="/home">
           Home
         </v-btn>
-        <v-btn
-          v-else
-          block
-          color="white"
-          rounded
-          class="cyan--text darken-5"
-          x-large
-          to="/signup"
-        >
+        <v-btn v-else block color="indigo" rounded dark x-large to="/signup">
           Create an account
         </v-btn>
       </v-col>
     </v-row>
     <v-row v-if="!auth">
       <v-col class="text-center">
-        <NuxtLink to="/login" class="white--text"
+        <NuxtLink to="/login" class="indigo--text"
           >I already have an account</NuxtLink
         >
       </v-col>
@@ -61,7 +50,8 @@ export default {
   auth: false,
   data() {
     return {
-      logo: '/img/main-logo.svg',
+      logo: '/img/logo.svg',
+      utimelogo: '/img/main-logo.svg',
       auth: this.$auth.loggedIn,
     }
   },

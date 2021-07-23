@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       image:
-        'https://res.cloudinary.com/dfuhm3pot/image/upload/v1626860442/utime/doctor/default_q20atq.png',
+        'https://res.cloudinary.com/dfuhm3pot/image/upload/v1626989983/utime/doctor/default_doctor_lsvqdf.png',
     }
   },
   computed: {

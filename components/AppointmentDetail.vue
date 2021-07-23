@@ -1,5 +1,5 @@
 <template>
-  <v-card hover :class="['my-2', 'px-5', 'py-1', 'rounded', 'd-flex', 'justify-space-between', 'pink', today ? 'lighten-5' : 'lighten-4']" :to="getRoute" >
+  <v-card hover :class="['my-2', 'px-5', 'py-1', 'rounded', 'd-flex', 'justify-space-between', 'orange', today ? 'lighten-5' : 'lighten-4']" :to="getRoute" >
     <div>
       <span>{{ getDate }}</span>
     </div>
