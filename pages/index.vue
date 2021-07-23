@@ -1,9 +1,10 @@
 <template>
   <v-container fill-height>
     <v-row>
-      <v-col cols="12" class="d-flex justify-center align-center mt-10">
-        <v-img max-height="150" max-width="150" :src="logo"></v-img>
-        <h1 class="indigo--text text-center ml-3">CLINIC VITA</h1>
+      <v-col cols="12" class="d-flex flex-column flex-sm-row justify-center align-center mt-10">
+        <v-img v-if="$vuetify.breakpoint.xsOnly" max-height="70" max-width="70" class="order-2 order-sm-1" :src="logo"></v-img>
+        <v-img v-else max-height="150" max-width="150" class="order-2 order-sm-1" :src="logo"></v-img>
+        <h1 class="indigo--text text-center ml-sm-3 order-1 order-sm-2">CLINIC VITA</h1>
       </v-col>
     </v-row>
     <v-row>
