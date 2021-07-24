@@ -10,6 +10,8 @@
                   'text-center',
                   $vuetify.breakpoint.xsOnly ? 'nameMobile' : 'name',
                   $vuetify.breakpoint.smOnly ? 'nameSmall' : 'name',
+                  'grey--text',
+                  'text--lighten-5'
                 ]"
               >
                 CLINIC VITA
@@ -17,7 +19,8 @@
 
               <p
                 :class="[
-                  'white--text',
+                  'orange--text',
+                  'text--accent-1',
                   'text-center',
                   $vuetify.breakpoint.xsOnly ? 'poweredMobile' : 'powered',
                   $vuetify.breakpoint.smOnly ? 'poweredSmall' : 'powered',
@@ -34,6 +37,8 @@
                   'text-center',
                   $vuetify.breakpoint.xsOnly ? 'LoginMobile' : 'Login',
                   $vuetify.breakpoint.smOnly ? 'LoginSmall' : 'Login',
+                  'indigo--text',
+                  'text--lighten-5',
                 ]"
               >
                 Login
@@ -96,7 +101,6 @@ export default {
 .name {
   font-size: 4.5rem;
   text-shadow: rgb(0 0 0 / 20%) 3px 3px 3px;
-  color: rgb(122, 177, 255);
   margin-top: 5vh;
 }
 .powered {
@@ -108,7 +112,6 @@ export default {
 .nameMobile {
   font-size: 10vw;
   text-shadow: rgb(0 0 0 / 20%) 3px 3px 3px;
-  color: rgb(122, 177, 255);
 }
 .LoginMobile {
   font-size: 9vw;

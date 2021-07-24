@@ -1,5 +1,5 @@
 <template>
- <v-app>
+  <v-app>
     <v-main class="app-bg">
       <v-container fluid fill-height>
         <Nuxt />
@@ -9,7 +9,8 @@
 </template>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Oswald:wght@700&display=swap');
+
 .app-bg {
   background-image: radial-gradient(
       circle at 34% 75%,
@@ -37,7 +38,7 @@
 
 h1 {
   font-size: 3.5rem;
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Josefin Sans', sans-serif;
   letter-spacing: 2px;
 }
 
@@ -45,5 +46,4 @@ h1 {
 .v-card__title {
   word-break: normal !important;
 }
-
 </style>

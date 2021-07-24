@@ -10,13 +10,16 @@
                   'text-center',
                   $vuetify.breakpoint.xsOnly ? 'nameMobile' : 'name',
                   $vuetify.breakpoint.smOnly ? 'nameSmall' : 'name',
+                  'grey--text',
+                  'text--lighten-5',
                 ]"
               >
                 CLINIC VITA
               </h1>
               <p
                 :class="[
-                  'white--text',
+                  'orange--text',
+                  'text--accent-1',
                   'text-center',
                   $vuetify.breakpoint.xsOnly ? 'poweredMobile' : 'powered',
                   $vuetify.breakpoint.smOnly ? 'poweredSmall' : 'powered',
@@ -33,6 +36,8 @@
                   'text-center',
                   $vuetify.breakpoint.xsOnly ? 'signUpMobile' : 'signUp',
                   $vuetify.breakpoint.smOnly ? 'signUpSmall' : 'signUp',
+                  'indigo--text',
+                  'text--lighten-5',
                 ]"
               >
                 SignUp
@@ -158,16 +163,16 @@ export default {
   color: white;
 }
 
-.signUp-enter-active, .signUp-leave-active {
+.signUp-enter-active,
+.signUp-leave-active {
   transition: all 0.3s ease-out;
 }
 .signUp-enter {
- left: -100%;
+  left: -100%;
 }
 .signUp-enter-to {
   left: 0;
 }
-
 </style>
 
 <style>

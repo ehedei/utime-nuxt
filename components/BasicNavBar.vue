@@ -52,7 +52,7 @@
           class="mr-2"
           src="https://res.cloudinary.com/dfuhm3pot/image/upload/v1627049153/utime/logos/vita-white_c35oav.svg"
         ></v-img
-        ><span>{{ title }}</span></v-toolbar-title
+        ><span class="nav-title">{{ title }}</span></v-toolbar-title
       >
 
       <v-spacer></v-spacer>
@@ -138,5 +138,9 @@ export default {
 #nav-bar.v-app-bar--is-scrolled {
   background-image: url('https://res.cloudinary.com/dfuhm3pot/image/upload/v1627024892/utime/navbar/dense_crqrjk.svg');
   background-color: red;
+}
+
+.nav-title {
+    font-family: 'Josefin Sans', sans-serif;
 }
 </style>
