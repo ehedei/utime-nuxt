@@ -114,7 +114,7 @@ export default {
       actualAppointment: null,
       nextAppointment: null,
       info: {},
-      dialog: false
+      dialog: false,
     }
   },
   mounted() {
@@ -130,22 +130,28 @@ export default {
   },
   methods: {
     checkIn() {
-      const updatedTime = moment().format('YYYY-MM-DD HH:mm:ss')
-      this.socket.emit(
-        'check-in',
-        this.actualAppointment,
-        this.nextAppointment,
-        updatedTime
-      )
+      if (this.nextAppointment) {
+        const updatedTime = moment().format('YYYY-MM-DD HH:mm:ss')
+        this.socket.emit('change-status', {
+          doctorId: this.doctor._id,
+          actualAppointment: this.actualAppointment,
+          nextAppointment: this.nextAppointment,
+          status: 'inside',
+          updatedTime,
+        })
+      }
     },
     noShow() {
-      const updatedTime = moment().format('YYYY-MM-DD HH:mm:ss')
-      this.socket.emit(
-        'no-show',
-        this.actualAppointment,
-        this.nextAppointment,
-        updatedTime
-      )
+      if (this.nextAppointment) {
+        const updatedTime = moment().format('YYYY-MM-DD HH:mm:ss')
+        this.socket.emit('change-status', {
+          doctorId: this.doctor._id,
+          actualAppointment: this.actualAppointment,
+          nextAppointment: this.nextAppointment,
+          status: 'no-show',
+          updatedTime,
+        })
+      }
     },
     getTime(start) {
       return moment.utc(start).format('LT')
@@ -169,7 +175,7 @@ export default {
 
       const msg =
         minutes < 0
-          ? `Delay: ${minutes} minutes`
+          ? `Delay: ${Math.abs(minutes)} minutes`
           : `Advance: ${minutes} minutes`
 
       return msg

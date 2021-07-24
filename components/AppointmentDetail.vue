@@ -1,8 +1,5 @@
 <template>
-  <v-card hover :class="['my-2', 'px-5', 'py-1', 'rounded', 'd-flex', 'justify-space-between', 'orange', today ? 'lighten-5' : 'lighten-4']" :to="getRoute" >
-    <div>
-      <span>{{ getDate }}</span>
-    </div>
+  <v-card hover :class="['my-2', 'px-5', 'py-1', 'rounded', 'd-flex', 'justify-center', 'orange', today ? 'lighten-5' : 'lighten-4']" :to="getRoute" >
     <div>
       <span>{{ getTime }}</span>
     </div>
@@ -21,9 +18,6 @@ export default {
   computed: {
     getTime() {
       return moment.utc(this.appointment.start).format("LT");
-    },
-    getDate() {
-      return moment.utc(this.appointment.start).format("DD/MM/YYYY");
     },
     getRoute() {
       return `/appointments/${this.appointment.booking}`

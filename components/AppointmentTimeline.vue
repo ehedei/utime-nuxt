@@ -4,16 +4,27 @@
       <v-col>
         <v-card v-if="checkappointments" id="card1">
           <v-card-title class="containerTitle">
-            <p :class="[$vuetify.breakpoint.smAndDown ? 'title1Small' : 'title1']">Next Appointments</p>
+            <p
+              :class="[
+                $vuetify.breakpoint.smAndDown ? 'title1Small' : 'title1',
+              ]"
+            >
+              Next Appointments
+            </p>
           </v-card-title>
-          <v-card-text :class="[$vuetify.breakpoint.smAndDown ? 'nextAppointmentsSmall' : 'nextAppointments']">
+          <v-card-text
+            :class="[
+              $vuetify.breakpoint.smAndDown
+                ? 'nextAppointmentsSmall'
+                : 'nextAppointments',
+            ]"
+          >
             <v-timeline :dense="$vuetify.breakpoint.smAndDown" witdh="300px">
               <v-timeline-item
                 v-for="(appointment, ind) in appointmentsByDate"
                 :key="ind"
                 color="#cd722e"
                 icon="mdi-calendar-clock"
-
               >
                 <v-card id="cards" elevation="7">
                   <v-card-title
@@ -30,15 +41,29 @@
                   </v-card-title>
                   <v-card>
                     <v-card-text class="white text--primary">
-                      <div
+                      <v-card
                         v-for="(a, i) in appointment.appointments"
                         :key="i"
-                        class="text-center rounded pink lighten-5"
+                        hover
+                        :class="[
+                          'my-2',
+                          'px-5',
+                          'py-1',
+                          'rounded',
+                          'd-flex',
+                          'justify-space-between',
+                          'orange',
+                          'lighten-5',
+                        ]"
+                        :to="getRoute(a)"
                       >
-                        <p>
-                          {{ a.appointment.doctor.name }}
-                        </p>
-                      </div>
+                        <div>
+                          <span>{{ a.appointment.doctor.name }}</span>
+                        </div>
+                        <div>
+                          <span>{{ getTime(a.appointment.start) }}</span>
+                        </div>
+                      </v-card>
                     </v-card-text>
                   </v-card>
                 </v-card>
@@ -48,14 +73,36 @@
         </v-card>
         <v-card v-else id="card1">
           <v-card-title class="containerTitle">
-            <p :class="[$vuetify.breakpoint.smAndDown ? 'title1Small' : 'title1']" >No appointments ahead</p>
+            <p
+              :class="[
+                $vuetify.breakpoint.smAndDown ? 'title1Small' : 'title1',
+              ]"
+            >
+              No appointments ahead
+            </p>
           </v-card-title>
           <v-card-text class="bannerContainer">
-            <v-banner :class="[$vuetify.breakpoint.smAndDown ? 'curiosityBannerSmall' : 'curiosityBanner',]">
+            <v-banner
+              :class="[
+                $vuetify.breakpoint.smAndDown
+                  ? 'curiosityBannerSmall'
+                  : 'curiosityBanner',
+              ]"
+            >
               <p class="curiosityText">Do you know that ...</p>
               <p class="curiosityText">{{ getCuriosity }}</p>
               <template v-slot:actions>
-                <v-btn text color="orange" class="btn text--darken-3" :class="['btn', 'text--darken-3', $vuetify.breakpoint.smAndDown ? 'btnSmall' : 'btn',]" @click="nextCuriosity">
+                <v-btn
+                  text
+                  color="orange"
+                  class="btn text--darken-3"
+                  :class="[
+                    'btn',
+                    'text--darken-3',
+                    $vuetify.breakpoint.smAndDown ? 'btnSmall' : 'btn',
+                  ]"
+                  @click="nextCuriosity"
+                >
                   Next curiosity
                 </v-btn>
               </template>
@@ -113,7 +160,7 @@ export default {
         'Walking at a fast pace for three hours or more at least once a week, you can reduce your risk of heart disease by up to 65%.',
         'Even at rest, muscle is three times more efficient at burning calories than fat.',
         'Regular activity can ease the severity and reduce the frequency of lower back pain.',
-        'Running is good for you. People who run 12-18 miles a week have a stronger immune system and can increase their bone mineral density.'
+        'Running is good for you. People who run 12-18 miles a week have a stronger immune system and can increase their bone mineral density.',
       ],
     }
   },
@@ -156,6 +203,12 @@ export default {
         this.index = 0
       }
     },
+    getRoute(booking) {
+      return `/appointments/${booking._id}`
+    },
+    getTime(datetime) {
+      return moment.utc(datetime).format('LT')
+    }
   },
 }
 </script>
@@ -237,5 +290,4 @@ export default {
 .nextAppointmentsSmall {
   margin-left: -50px;
 }
-
 </style>
