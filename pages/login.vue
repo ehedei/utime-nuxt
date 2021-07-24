@@ -80,7 +80,7 @@ export default {
 
 <style scoped>
 .container1 {
-  background-image: url('../static/img/background.jpg');
+  background-image: url('https://res.cloudinary.com/dfuhm3pot/image/upload/v1627024921/utime/backgrounds/background_vh8vz6.jpg');
   background-size: cover;
   position: relative;
 }

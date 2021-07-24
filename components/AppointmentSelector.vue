@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-row justify="center">
+    <v-row justify="center" class="align-start">
       <v-col cols="12" sm="8" md="5" lg="4" xl="3">
         <v-date-picker
           v-model="date"
@@ -15,7 +15,7 @@
         >
         </v-date-picker>
       </v-col>
-      <v-col cols="12">
+      <div>
         <AppointmentPicker
           :appointments="appointments"
           :date="date"
@@ -23,7 +23,7 @@
           @setPickerInvisible="appointmentVisible = !appointmentVisible"
           @saveAppointment="saveAppointment"
         ></AppointmentPicker>
-      </v-col>
+      </div>
     </v-row>
   </v-container>
 </template>
@@ -52,7 +52,7 @@ export default {
       return moment.utc(date) >= moment.utc().startOf('day')
     },
     async selectDate() {
-      const now = moment.utc()
+      const now = moment()
       const endDate = `${this.date} 23:59:59`
       const startDate =
         now.format('YYYY-MM-DD') === this.date

@@ -66,7 +66,7 @@ export default {
 
 <style scoped>
 .container1 {
-  background-image: url('../static/img/backgroundSign.jpg');
+  background-image: url('https://res.cloudinary.com/dfuhm3pot/image/upload/v1627024921/utime/backgrounds/backgroundSign_ium2tr.jpg');
   background-size: cover;
   position: relative;
 }

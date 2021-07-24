@@ -50,8 +50,8 @@ export default {
   auth: false,
   data() {
     return {
-      logo: '/img/logo.svg',
-      utimelogo: '/img/main-logo.svg',
+      logo: 'https://res.cloudinary.com/dfuhm3pot/image/upload/v1627048988/utime/logos/vita_r5npxv.svg',
+      utimelogo: 'https://res.cloudinary.com/dfuhm3pot/image/upload/v1627049063/utime/logos/utime-gold_qnkidh.svg',
       auth: this.$auth.loggedIn,
     }
   },

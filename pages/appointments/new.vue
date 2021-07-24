@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container>
     <v-stepper id="stepper" v-model="e1" alt-labels flat>
       <v-stepper-items>
         <v-stepper-content step="1" class="px-0">
