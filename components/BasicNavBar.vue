@@ -45,14 +45,15 @@
         </v-card>
       </v-menu>
 
-      <v-toolbar-title class="d-flex align-center pb-1"
-        ><v-img
+      <v-toolbar-title to="/home" class="d-flex align-center pb-1 nav-title" @click="goHome"
+        >
+        <v-img
           max-height="42"
           max-width="42"
           class="mr-2"
           src="https://res.cloudinary.com/dfuhm3pot/image/upload/v1627049153/utime/logos/vita-white_c35oav.svg"
         ></v-img
-        ><span class="nav-title">{{ title }}</span></v-toolbar-title
+        ><span>{{ title }}</span></v-toolbar-title
       >
 
       <v-spacer></v-spacer>
@@ -122,6 +123,9 @@ export default {
     logout() {
       this.$auth.logout()
     },
+    goHome() {
+      this.$router.push('/home')
+    }
   },
 }
 </script>
@@ -142,5 +146,6 @@ export default {
 
 .nav-title {
     font-family: 'Josefin Sans', sans-serif;
+    cursor: pointer;
 }
 </style>

@@ -2,7 +2,7 @@
   <v-container fill-height>
     <v-combobox
       v-model="selectedDoctors"
-      class="align-self-start"
+      class="align-self-start mt-8 mx-5"
       :items="doctors"
       item-text="name"
       label="Select Doctors"

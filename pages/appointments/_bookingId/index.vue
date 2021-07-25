@@ -6,7 +6,7 @@
           :key="i"
           height="100"
           width="100"
-          :src="'/img/specialities/' + specialty.image"
+          :src="specialty.image"
         ></v-img>
       </v-card-text>
 
