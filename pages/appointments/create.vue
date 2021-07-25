@@ -59,7 +59,8 @@
                         :allowed-dates="allowedDates"
                         :landscape="$vuetify.breakpoint.lgAndUp"
                         elevation="4"
-                        color="indigo darken-3"
+                        header-color="indigo darken-3"
+                        color="orange darken-4"
                         first-day-of-week="1"
                         full-width
                         multiple
@@ -73,8 +74,7 @@
           </v-card-text>
           <v-card-actions class="pa-4">
             <v-spacer></v-spacer>
-            <v-btn color="indigo darken-4" dark @click="create">Create</v-btn>
-            <v-spacer></v-spacer>
+            <v-btn color="orange darken-4" text dark @click="create">Create</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

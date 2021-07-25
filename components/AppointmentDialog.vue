@@ -111,11 +111,6 @@ export default {
       user: null,
     }
   },
-  computed: {
-    getFullName() {
-      return `${1} ${1}`
-    },
-  },
   methods: {
     getDate(date) {
       return moment.utc(date).format('DD/MM/YYYY')

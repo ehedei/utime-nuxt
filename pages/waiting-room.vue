@@ -15,7 +15,6 @@
       solo
       background-color="white"
       color="indigo"
-      @change="selectDoctor"
     >
     </v-combobox>
     <v-row justify="center">
@@ -25,7 +24,6 @@
         :doctor="doctor"
         :appointments="doctor.appointments"
         :socket="socket"
-        @passTurn="passTurn"
       ></Queue>
     </v-row>
   </v-container>
@@ -47,14 +45,6 @@ export default {
       selectedDoctors: [],
       socket: null,
     }
-  },
-  methods: {
-    passTurn(doctorId) {
-      console.log(doctorId)
-    },
-    selectDoctor() {
-      this.socket.emit('something', this.doctors)
-    },
   },
   mounted() {
     const token = this.$auth.strategy.token.get()

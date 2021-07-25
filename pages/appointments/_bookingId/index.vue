@@ -1,33 +1,104 @@
 <template>
-  <div>
-    <v-card>
-      <v-card-text>
-        <v-img v-for="(specialty, i) in booking.appointment.doctor.specialties"
-          :key="i"
-          height="100"
-          width="100"
-          :src="specialty.image"
-        ></v-img>
-      </v-card-text>
+  <v-container>
+    <v-row v-if="booking.appointment" class="justify-center">
+      <v-col cols="12" sm="6" class="order-2 order-sm-1">
+        <v-card width="350px" class="ma-3 mx-auto" elevation="4">
+          <v-card-text>
+            <div class="d-flex flex-column align-center mt-4">
+              <v-img
+                height="100"
+                width="100"
+                src="https://res.cloudinary.com/dfuhm3pot/image/upload/v1627211603/utime/appointment/appointment-xs-gold_ion3tq.png"
+              ></v-img>
+            </div>
+          </v-card-text>
+          <v-divider class="mx-4 my-3"></v-divider>
 
-      <v-card-title>
-        <h2>v-card-title</h2>
-      </v-card-title>
+          <v-card-title>
+            <h3>{{ booking.appointment.doctor.name }}</h3>
+          </v-card-title>
+          <v-card-subtitle> Doctor </v-card-subtitle>
 
-      <v-card-text>
-        line 1<br />
-        line 2<br />
-        line 3
-      </v-card-text>
+          <v-card-text>
+            <div class="text-subtitle-1">
+              Appointment Date:
+              <strong>{{ getDate(booking.appointment.start) }}</strong>
+            </div>
+            <div class="mb-4 text-subtitle-1 d-flex justify-space-between">
+              <div>
+                Start: <strong>{{ getTime(booking.appointment.start) }}</strong>
+              </div>
+              <div>
+                End: <strong>{{ getTime(booking.appointment.end) }}</strong>
+              </div>
+            </div>
+            <div class="my-4 text-subtitle-4">
+              Booked on
+              <strong>{{ getDate(booking.bookingDate) }}</strong>
+              at
+              <strong>{{ getTime(booking.bookingDate) }}</strong>
+            </div>
+            <v-divider class="mx-4 my-3"></v-divider>
+            <div class="mb-3 text-subtitle-1">Specialties:</div>
+            <v-row justify="center" class="mx-0 my-2">
+              <div
+                v-for="(specialty, i) in booking.appointment.doctor.specialties"
+                :key="i"
+                class="d-flex flex-column text-center mx-5"
+              >
+                <v-img height="50" width="50" :src="specialty.image"></v-img>
+                <small>{{ specialty.name }}</small>
+              </div>
+            </v-row>
+          </v-card-text>
 
-      <v-card-actions>
-        <v-btn color="success">Click #1</v-btn>
-        <v-btn text color="primary">Click #2</v-btn>
-        <v-spacer></v-spacer>
-      </v-card-actions>
-    </v-card>
-    <BookingLive v-if="isToday"></BookingLive>
-  </div>
+          <v-card-actions v-if="isCancellable">
+            <v-spacer></v-spacer>
+            <v-btn
+              text
+              color="indigo"
+              class="text--darken-4"
+              @click="cancelAppointment"
+              >Cancel Appointment</v-btn
+            >
+          </v-card-actions>
+        </v-card>
+      </v-col>
+      <v-col
+        v-if="isToday && booking.status === 'booked'"
+        cols="12"
+        sm="6"
+        class="order-1 order-sm-2"
+      >
+        <BookingLive :appointment="booking.appointment"></BookingLive>
+      </v-col>
+    </v-row>
+    <v-row v-else class="justify-center">
+      <v-card elevation="5" max-width="350px" class="align-self-center pa-4">
+        <v-card-title>
+          <h2>Appointment cancelled</h2>
+        </v-card-title>
+        <v-card-text>
+          <div class="my-4 text-subtitle-4">
+            Booked on
+            <strong>{{ getDate(booking.bookingDate) }}</strong>
+            at
+            <strong>{{ getTime(booking.bookingDate) }}</strong>
+          </div>
+        </v-card-text>
+        <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="orange"
+              class="text--darken-4"
+              text
+              @click="$router.push('/appointments')"
+              >Back</v-btn
+            >
+          </v-card-actions>
+      </v-card>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -37,26 +108,32 @@ export default {
     const id = context.$auth.user._id
     const bookingId = context.route.params.bookingId
 
-    try {
-      const booking = await context.$getBookingByIdIntoUser(id, bookingId)
-      return { booking }
-    } catch (error) {
-      const status = error.response?.status
-
-      if (status === 403) {
-        context.redirect('/403')
-      } else if (status === 404) {
-        context.redirect('/404')
-      } else {
-        context.redirect('/500')
-      }
-    }
+    const booking = await context.$getBookingByIdIntoUser(id, bookingId)
+    return { booking }
   },
   computed: {
     isToday() {
       const today = moment.utc()
       const start = moment.utc(this.booking.appointment.start)
       return today.diff(start, 'days') === 0
+    },
+    isCancellable() {
+      return this.booking.status === 'booked'
+    },
+  },
+  methods: {
+    getDate(date) {
+      return moment.utc(date).format('DD/MM/YYYY')
+    },
+    getTime(date) {
+      return moment.utc(date).format('LT')
+    },
+    async cancelAppointment() {
+      const userId = this.$auth.user._id
+      const bookingId = this.booking._id
+      await this.$cancelAppointmentIntoUser(userId, bookingId)
+      alert('Booking Cancelled')
+      this.$router.push('/appointments')
     },
   },
 }

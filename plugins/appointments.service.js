@@ -7,4 +7,6 @@ export default ({ $axios }, inject) => {
 
   inject('getAppointmentById',
     async id => await $axios.$get(`/appointment/${id}`))
+
+  inject('cancelAppointmentIntoUser', async (userId, bookingId) => await $axios.$put(`/user/${userId}/booking/${bookingId}`, { status: 'cancelled' }))
 }
