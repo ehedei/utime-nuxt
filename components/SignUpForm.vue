@@ -171,14 +171,14 @@ export default {
     },
     async signup() {
       const newUser = {
-        username: this.username,
-        email: this.email,
+        username: this.username.trim(),
+        email: this.email.trim().toLowerCase(),
         password: this.password,
 
-        mobile: this.mobile,
+        mobile: this.mobile.trim(),
 
-        firstName: this.firstName,
-        lastName: this.lastName,
+        firstName: this.firstName.trim(),
+        lastName: this.lastName.trim(),
       }
 
       try {

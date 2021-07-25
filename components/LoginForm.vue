@@ -68,7 +68,7 @@ export default {
     },
     async Login() {
       const userData = {
-        email: this.email,
+        email: this.email.trim().toLowerCase(),
         password: this.password,
       }
 
