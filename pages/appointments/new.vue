@@ -1,9 +1,9 @@
 <template>
-  <v-container>
+  <v-container class="px-0">
     <v-stepper id="stepper" v-model="e1" alt-labels flat>
       <v-stepper-items>
         <v-stepper-content step="1" class="px-0">
-          <v-card class="mb-12" color="transparent" flat>
+          <v-card class="mb-12 px-0" color="transparent" flat>
             <v-card-title class="justify-center h1">Select a Specialty</v-card-title>
             <SpecialtySelector
               :specialties="specialties"
