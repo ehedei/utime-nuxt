@@ -42,7 +42,10 @@
 
     <v-card-text>
       <div v-if="actualAppointment">
-        <div v-if="actualAppointment._id === appointment._id" class="text-subtitle-1 d-flex justify-space-between">
+        <div
+          v-if="actualAppointment._id === appointment._id"
+          class="text-subtitle-1 d-flex justify-space-between"
+        >
           <strong> This is your turn </strong>
         </div>
         <div v-else class="text-subtitle-1 d-flex justify-space-between">
@@ -64,6 +67,75 @@
 
       <v-divider class="mx-4 my-3"></v-divider>
     </v-card-text>
+    <v-card-actions v-if="updatedAppointment">
+      <v-spacer></v-spacer>
+      <v-btn
+        text
+        color="indigo"
+        class="text--darken-4"
+        @click="$parent.cancelAppointment"
+        >Cancel Appointment</v-btn
+      >
+    </v-card-actions>
+
+    <v-dialog v-model="areYouNext" persistent :width="width">
+      <v-card dark color="indigo" class="darken-4" elevation="6">
+        <v-card-title class="text-h6"> Live </v-card-title>
+        <v-card-text class="pb-0">
+          <div class="d-flex justify-space-between">
+            Doctor:
+            <strong class="align-self-end">{{
+              $parent.booking.appointment.doctor.name
+            }}</strong>
+          </div>
+        </v-card-text>
+
+        <v-card-title class="text-h5"> You are next! </v-card-title>
+        <v-card-subtitle class="text-h6"> Be ready! </v-card-subtitle>
+        <v-card-text>
+          <div
+            class="
+              text-h5
+              d-flex
+              flex-column flex-sm-row
+              justify-space-between
+              white--text
+            "
+          >
+            Your appointment:
+            <strong class="align-self-end">{{
+              getTime(appointment.start)
+            }}</strong>
+          </div>
+        </v-card-text>
+
+        <v-card-text v-if="actualAppointment">
+          <div
+            class="text-h6 d-flex flex-column flex-sm-row justify-space-between"
+          >
+            Actual appointment:
+            <strong class="align-self-end">{{
+              getTime(actualAppointment.start)
+            }}</strong>
+          </div>
+          <div class="text-h6 d-flex justify-end white--text mt-1">
+            {{ getDifference }}
+          </div>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            x-large
+            text
+            color="white"
+            class="my-3 py-6 text-decoration-underline"
+            @click="$parent.cancelAppointment"
+            >Cancel Appointment</v-btn
+          >
+          <v-spacer></v-spacer>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 
@@ -79,36 +151,11 @@ export default {
   data() {
     return {
       socket: null,
+      updatedAppointment: null,
       actualAppointment: null,
       nextAppointment: null,
       appointments: [],
     }
-  },
-  mounted() {
-    const token = this.$auth.strategy.token.get()
-
-    this.socket = this.$nuxtSocket({
-      name: 'main',
-      extraHeaders: { Authorization: token },
-    })
-
-    this.socket.emit('subscribe', this.appointment.doctor._id)
-
-    this.socket.on('update', (doctorId, appointments, appointment) => {
-      if (doctorId === this.appointment.doctor._id) {
-        this.nextAppointment = appointments.shift()
-        this.appointments = appointments
-        this.actualAppointment = appointment
-      }
-    })
-  },
-  methods: {
-    getDate(date) {
-      return moment.utc(date).format('DD/MM/YYYY')
-    },
-    getTime(date) {
-      return moment.utc(date).format('LT')
-    },
   },
   computed: {
     areYouNext() {
@@ -137,7 +184,50 @@ export default {
         }
       }
       return 0
-    }
+    },
+    width() {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs':
+          return 300
+        case 'sm':
+          return 600
+        case 'md':
+        case 'lg':
+        case 'xl':
+          return 700
+        default:
+          return 290
+      }
+    },
+  },
+  methods: {
+    getDate(date) {
+      return moment.utc(date).format('DD/MM/YYYY')
+    },
+    getTime(date) {
+      return moment.utc(date).format('LT')
+    },
+  },
+  mounted() {
+    const token = this.$auth.strategy.token.get()
+
+    this.socket = this.$nuxtSocket({
+      name: 'main',
+      extraHeaders: { Authorization: token },
+    })
+
+    this.socket.emit('subscribe', this.appointment.doctor._id)
+
+    this.socket.on('update', (doctorId, appointments, appointment) => {
+      if (doctorId === this.appointment.doctor._id) {
+        this.updatedAppointment = appointments.find(
+          (el) => el._id === this.appointment._id
+        )
+        this.nextAppointment = appointments.shift()
+        this.appointments = appointments
+        this.actualAppointment = appointment
+      }
+    })
   },
 }
 </script>

@@ -52,7 +52,7 @@
             </v-row>
           </v-card-text>
 
-          <v-card-actions v-if="isCancellable">
+          <v-card-actions v-if="isCancellable && !isToday">
             <v-spacer></v-spacer>
             <v-btn
               text
@@ -100,7 +100,7 @@
     </v-row>
     <v-dialog v-model="dialog" persistent max-width="290">
       <v-card>
-        <v-card-title class="text-h5"> Login </v-card-title>
+        <v-card-title class="text-h5"> Cancel Appointment </v-card-title>
         <v-card-text>{{ message }}</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>

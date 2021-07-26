@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="pt-16">
     <v-row justify="center">
-      <v-col cols="12" md="5" lg="3" v-for="(route, i) in getRoutes" :key="i" class="mx-8 my-8 my-md-12 justify-center">
+      <v-col v-for="(route, i) in getRoutes" :key="i" cols="12" md="5" lg="3"  class="mx-8 my-8 my-md-12 justify-center">
         <CardButton class="mx-auto"
           :to="route.to"
           :title="route.title"

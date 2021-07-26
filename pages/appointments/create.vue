@@ -31,16 +31,16 @@
                     </v-col>
                     <v-col cols="12" sm="5">
                       <v-text-field
-                        label="Start Time"
                         v-model="start"
+                        label="Start Time"
                         :max="end"
                         type="time"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="5">
                       <v-text-field
-                        label="End Time"
                         v-model="end"
+                        label="End Time"
                         :min="start"
                         type="time"
                       ></v-text-field>
