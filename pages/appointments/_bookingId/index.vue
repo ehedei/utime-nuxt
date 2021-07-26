@@ -87,17 +87,32 @@
           </div>
         </v-card-text>
         <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              color="orange"
-              class="text--darken-4"
-              text
-              @click="$router.push('/appointments')"
-              >Back</v-btn
-            >
-          </v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="orange"
+            class="text--darken-4"
+            text
+            @click="$router.push('/appointments')"
+            >Back</v-btn
+          >
+        </v-card-actions>
       </v-card>
     </v-row>
+    <v-dialog v-model="dialog" persistent max-width="290">
+      <v-card>
+        <v-card-title class="text-h5"> Login </v-card-title>
+        <v-card-text>{{ message }}</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn v-if="cancelled" color="indigo darken-1" text @click="$router.push('/appointments')">
+            Accept
+          </v-btn>
+          <v-btn v-else color="indigo darken-1" text @click="dialog = !dialog">
+            Accept
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -110,6 +125,13 @@ export default {
 
     const booking = await context.$getBookingByIdIntoUser(id, bookingId)
     return { booking }
+  },
+  data() {
+    return {
+      message: '',
+      dialog: false,
+      cancelled: false
+    }
   },
   computed: {
     isToday() {
@@ -129,11 +151,18 @@ export default {
       return moment.utc(date).format('LT')
     },
     async cancelAppointment() {
-      const userId = this.$auth.user._id
-      const bookingId = this.booking._id
-      await this.$cancelAppointmentIntoUser(userId, bookingId)
-      alert('Booking Cancelled')
-      this.$router.push('/appointments')
+      try {
+        const userId = this.$auth.user._id
+        const bookingId = this.booking._id
+        await this.$cancelAppointmentIntoUser(userId, bookingId)
+        this.cancelled = true
+        this.message = 'Booking correctly cancelled'
+        this.dialog = 'true'
+      } catch (err) {
+        this.cancelled = false
+        this.message = 'Something goes wrong. Try again!'
+        this.dialog = 'true'
+      }
     },
   },
 }

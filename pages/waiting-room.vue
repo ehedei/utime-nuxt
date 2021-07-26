@@ -33,12 +33,8 @@
 export default {
   middleware: ['advancedprivileges'],
   async asyncData(context) {
-    try {
-      const doctors = await context.$getDoctors()
-      return { doctors }
-    } catch (error) {
-      alert('Doctors are not available')
-    }
+    const doctors = await context.$getDoctors()
+    return { doctors }
   },
   data() {
     return {
