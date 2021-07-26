@@ -26,7 +26,7 @@
                 color="#cd722e"
                 icon="mdi-calendar-clock"
               >
-                <v-card id="cards" elevation="7">
+                <v-card id="cards" elevation="7" :class="[ind % 2 === 0 ? 'me-lg-auto' : 'ms-lg-auto', $vuetify.breakpoint.smAndDown ? 'mx-auto' : '']">
                   <v-card-title
                     class="
                       text-h6
@@ -37,10 +37,10 @@
                       indigo
                     "
                   >
-                    {{ appointment.date }}
+                    {{ getDate(appointment.date) }}
                   </v-card-title>
                   <v-card>
-                    <v-card-text class="white text--primary">
+                    <v-card-text class="white text--primary py-5">
                       <v-card
                         v-for="(a, i) in appointment.appointments"
                         :key="i"
@@ -208,6 +208,9 @@ export default {
     },
     getTime(datetime) {
       return moment.utc(datetime).format('LT')
+    },
+    getDate(datetime) {
+      return moment.utc(datetime).format('DD/MM/YYYY')
     }
   },
 }
