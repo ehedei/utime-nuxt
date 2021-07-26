@@ -24,6 +24,7 @@
           height="200px"
           class="scroll"
           @scroll.passive="onScroll"
+
         >
           <v-text-field
             dense
@@ -62,7 +63,7 @@
             class="inputtext"
             label="First name"
             :placeholder="[
-              user.firstname ? user.firstname : 'Introduce your first name',
+              user.firstName ? user.firstName : 'Introduce your first name',
             ]"
             required
             clearable
@@ -77,7 +78,7 @@
             class="inputtext"
             label="Last name"
             :placeholder="[
-              user.lastname ? user.lastname : 'Introduce your last name',
+              user.lastName ? user.lastName : 'Introduce your last name',
             ]"
             required
             clearable
@@ -99,7 +100,12 @@
             persistent-placeholder
           ></v-text-field>
 
-          <div v-if="isEditPress" class="d-flex justify-center pt-2 mt-2">
+          <div class="d-flex justify-center">
+
+          <div
+            v-if="isEditPress"
+            class="buttonWrapper d-flex justify-center pt-2 mt-2"
+          >
             <v-btn
               elevation="3"
               height="40"
@@ -109,7 +115,7 @@
               Edit
             </v-btn>
           </div>
-           <div v-else class="d-flex justify-space-around pt-2 mt-2">
+          <div v-else class="buttonWrapper d-flex justify-space-around pt-2 mt-2">
             <v-btn
               elevation="3"
               height="40"
@@ -118,7 +124,7 @@
             >
               Cancel
             </v-btn>
-             <v-btn
+            <v-btn
               elevation="3"
               height="40"
               class="button indigo"
@@ -126,6 +132,8 @@
             >
               Save Changes
             </v-btn>
+          </div>
+
           </div>
         </v-form>
       </v-col>
@@ -147,15 +155,19 @@ export default {
       return this.$auth.user
     },
   },
-   methods: {
-      editPress() {
-        this.isEditPress = !this.isEditPress
-      },
+  methods: {
+    editPress() {
+      this.isEditPress = !this.isEditPress
     },
+  },
 }
 </script>
 
 <style scoped>
+.buttonWrapper {
+  width: 500px;
+}
+
 .profilePicture {
   text-align: center;
   margin-top: -50px;
