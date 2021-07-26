@@ -24,19 +24,15 @@
           height="200px"
           class="scroll"
           @scroll.passive="onScroll"
-
         >
           <v-text-field
             dense
             filled
             prepend-inner-icon="mdi-account"
             v-model="username"
-            :rules="requiredRules"
             class="inputtext"
             label="Username"
-            :placeholder="[
-              user.username ? user.username : 'Introduce your username',
-            ]"
+            :placeholder="user.username ? user.username : 'Introduce your username'"
             required
             clearable
             persistent-placeholder
@@ -50,11 +46,28 @@
             class="inputtext"
             :rules="emailRules"
             label="Email"
-            :placeholder="[user.email ? user.email : 'Introduce your email']"
+            :placeholder="user.email ? user.email : 'Introduce your email'"
             required
             clearable
             persistent-placeholder
           ></v-text-field>
+
+          <v-text-field
+            class="inputtext"
+            filled
+            dense
+            prepend-inner-icon="mdi-lock"
+            :type="passwordview ? 'password' : 'text'"
+            :append-icon="passwordview ? 'mdi-eye-off' : 'mdi-eye-outline'"
+            @click:append="passwordview = !passwordview"
+            v-model="password"
+            label="Password"
+            placeholder="Introduce a new password"
+            required
+            clearable
+            persistent-placeholder
+          ></v-text-field>
+
           <v-text-field
             filled
             dense
@@ -62,9 +75,7 @@
             v-model="firstName"
             class="inputtext"
             label="First name"
-            :placeholder="[
-              user.firstName ? user.firstName : 'Introduce your first name',
-            ]"
+            :placeholder="user.firstName ? user.firstName : 'Introduce your first name'"
             required
             clearable
             persistent-placeholder
@@ -77,9 +88,7 @@
             v-model="lastName"
             class="inputtext"
             label="Last name"
-            :placeholder="[
-              user.lastName ? user.lastName : 'Introduce your last name',
-            ]"
+            :placeholder="user.lastName ? user.lastName : 'Introduce your last name'"
             required
             clearable
             persistent-placeholder
@@ -92,48 +101,56 @@
             v-model="mobile"
             class="app-inputtext inputtext"
             label="Phone number"
-            :placeholder="[
-              user.mobile ? user.mobile : 'Introduce your phone number',
-            ]"
+            :placeholder="user.mobile ? user.mobile : 'Introduce your phone number'"
             required
             clearable
             persistent-placeholder
           ></v-text-field>
 
           <div class="d-flex justify-center">
-
-          <div
-            v-if="isEditPress"
-            class="buttonWrapper d-flex justify-center pt-2 mt-2"
-          >
-            <v-btn
-              elevation="3"
-              height="40"
-              class="button indigo"
-              @click="editPress"
+            <div
+              v-if="isEditPress"
+              class="buttonWrapper d-flex justify-center pt-2 mt-2"
             >
-              Edit
-            </v-btn>
-          </div>
-          <div v-else class="buttonWrapper d-flex justify-space-around pt-2 mt-2">
-            <v-btn
-              elevation="3"
-              height="40"
-              class="button indigo"
-              @click="editPress"
+              <v-btn
+                elevation="3"
+                height="40"
+                @click="editPress"
+                :class="[
+                  'indigo',
+                  $vuetify.breakpoint.smAndDown ? 'buttonSmall' : 'button',
+                ]"
+              >
+                Edit
+              </v-btn>
+            </div>
+            <div
+              v-else
+              class="buttonWrapper d-flex justify-space-around pt-2 mt-2"
             >
-              Cancel
-            </v-btn>
-            <v-btn
-              elevation="3"
-              height="40"
-              class="button indigo"
-              @click="editPress"
-            >
-              Save Changes
-            </v-btn>
-          </div>
-
+              <v-btn
+                elevation="3"
+                height="40"
+                @click="editPress"
+                :class="[
+                  'indigo',
+                  $vuetify.breakpoint.smAndDown ? 'buttonSmall' : 'button',
+                ]"
+              >
+                Cancel
+              </v-btn>
+              <v-btn
+                elevation="3"
+                height="40"
+                @click="editPress"
+                :class="[
+                  'indigo',
+                  $vuetify.breakpoint.smAndDown ? 'buttonSmall' : 'button',
+                ]"
+              >
+                Save Changes
+              </v-btn>
+            </div>
           </div>
         </v-form>
       </v-col>
@@ -145,9 +162,25 @@
 export default {
   layout: 'default',
   auth: false,
+
   data() {
     return {
       isEditPress: true,
+      passwordview: true,
+      username: '',
+      firstName: '',
+      lastName: '',
+      mobile: '',
+      email: '',
+      password: '',
+      valid: true,
+      emailRules: [
+      (v) => !!v || 'E-mail is required',
+      (v) =>
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+          v
+        ) || 'Email must be valid',
+    ],
     }
   },
   computed: {
@@ -176,6 +209,7 @@ export default {
 .profilePictureSmall {
   text-align: center;
   margin-bottom: 25px;
+  margin-top: -25px;
 }
 .button {
   margin-top: 10px;
@@ -186,6 +220,17 @@ export default {
   text-shadow: rgb(0 0 0 / 70%) 2px 2px 2px;
   margin-bottom: 10px;
   padding: 0%;
+}
+.buttonSmall {
+  margin-top: 10px;
+  color: rgb(255, 255, 255) !important;
+  width: 120px;
+  height: 50px;
+  border-radius: 12px;
+  text-shadow: rgb(0 0 0 / 70%) 2px 2px 2px;
+  margin-bottom: 10px;
+  padding: 0%;
+  font-size: 0.75rem;
 }
 .scroll {
   height: 50vh;
