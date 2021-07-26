@@ -17,16 +17,12 @@
             <v-icon v-else color="white" size="60">mdi-account</v-icon>
           </v-avatar>
           <div v-if="!isEditPress">
-            <v-file-input v-model="img" show-size truncate-length="15" @click.prevent="$refs.fileInput.click()"></v-file-input>
-
-            <input
-              ref="fileInput"
-              v-show="false"
-              type="file"
-              accept=".jpeg,.jpg,.png,image/jpeg,image/png"
-              aria-label="upload image button"
-              @change="showFile"
-            />
+            <v-file-input
+              v-model="img"
+              show-size
+              truncate-length="15"
+              @change="selectFile"
+            ></v-file-input>
           </div>
         </div>
         <v-form
@@ -215,13 +211,7 @@ export default {
     editPress() {
       this.isEditPress = !this.isEditPress
     },
-    showFile(e) {
-      console.log(e.target.files[0])
-      this.img = e.target.files[0]
-    },
-
-    async selectFile(e) {
-
+    async selectFile() {
       /* create a reader */
       const readData = (f) =>
         new Promise((resolve) => {
@@ -242,10 +232,42 @@ export default {
       this.imgSrc = instance.url
     },
     async updateUser() {
-      if(this.img) {
+      if (this.img) {
         await this.selectFile()
-      } // Cuando esto acabe, la imagen estará en servidor y this.imgSrc contendrá la nueva ruta de la imagen que debe ir a base de datos
-    }
+      }
+
+      const updatedUser = {}
+
+      if (this.username) {
+        updatedUser.username = this.username
+      }
+
+      if (this.lastName) {
+        updatedUser.lastName = this.lastName
+      }
+
+      if (this.firstName) {
+        updatedUser.firstName = this.firstName
+      }
+
+      if (this.image) {
+        updatedUser.image = this.imgSrc
+      }
+
+      if (this.password) {
+        updatedUser.password = this.password
+      }
+
+      if (this.phone) {
+        updatedUser.phone = this.phone
+      }
+
+      if (this.mobile) {
+        updatedUser.mobile = this.mobile
+      }
+
+
+    },
   },
 }
 </script>
