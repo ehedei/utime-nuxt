@@ -65,19 +65,6 @@ export default {
     name: 'login',
     mode: 'out-in',
   },
-  methods: {
-    handleOrientationChange() {
-      const orientation = window.screen.orientation.type
-      if (orientation === 'portrait-primary') {
-        console.log('portait')
-      } else if (orientation === 'landscape-primary') {
-        console.log('landscape')
-      }
-    },
-  },
-  mounted() {
-    window.addEventListener('orientationchange', this.handleOrientationChange)
-  },
   layout: 'starter',
   auth: false,
 }

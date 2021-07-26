@@ -33,7 +33,7 @@
                 {{ user.role }}
               </p>
               <v-divider class="my-3"></v-divider>
-              <v-btn depressed block text to="/home">
+              <v-btn depressed block text to="/profile">
                 <v-icon class="me-1">mdi-account-box-outline</v-icon> Profile
               </v-btn>
               <v-divider class="my-3"></v-divider>
