@@ -90,6 +90,7 @@ export default {
 <style lang="scss" scoped>
 #appointment-list {
   overflow-y: auto;
+  overflow-x: hidden;
   height: 80vh;
 }
 
