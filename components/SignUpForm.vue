@@ -104,7 +104,7 @@
       <v-row justify="center">
         <v-dialog v-model="dialog" persistent max-width="290">
           <v-card>
-            <v-card-title class="text-h5"> Login </v-card-title>
+            <v-card-title class="text-h5"> Signup </v-card-title>
             <v-card-text>{{ message }}</v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -199,7 +199,7 @@ export default {
   margin-top: 10px;
   color: rgb(255, 255, 255) !important;
   width: 120px;
-  height: 40px;
+  height: 40px !important;
   border-radius: 12px;
   text-shadow: rgb(0 0 0 / 70%) 2px 2px 2px;
   margin-bottom: 10px;
