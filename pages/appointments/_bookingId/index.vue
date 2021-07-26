@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row v-if="booking.appointment" class="justify-center">
-      <v-col cols="12" sm="6" class="order-2 order-sm-1">
+      <v-col cols="12" sm="6" lg="4" class="order-2 order-sm-1">
         <v-card width="350px" class="ma-3 mx-auto" elevation="4">
           <v-card-text>
             <div class="d-flex flex-column align-center mt-4">
@@ -68,6 +68,7 @@
         v-if="isToday && booking.status === 'booked'"
         cols="12"
         sm="6"
+        lg="4"
         class="order-1 order-sm-2"
       >
         <BookingLive :appointment="booking.appointment"></BookingLive>
@@ -137,7 +138,7 @@ export default {
     isToday() {
       const today = moment.utc()
       const start = moment.utc(this.booking.appointment.start)
-      return today.diff(start, 'days') === 0
+      return today.format('YYYY-MM-DD') === start.format('YYYY-MM-DD')
     },
     isCancellable() {
       return this.booking.status === 'booked'
