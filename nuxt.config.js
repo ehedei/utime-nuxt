@@ -66,8 +66,13 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/auth-next',
-    'nuxt-socket-io'
+    'nuxt-socket-io',
+    '@nuxtjs/cloudinary'
   ],
+
+  cloudinary: {
+    cloudName: process.env.IMG_CLOUD
+  },
 
   io: {
     sockets: [{

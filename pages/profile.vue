@@ -16,6 +16,14 @@
             <img v-if="user.image" :src="user.image" :alt="user.username" />
             <v-icon v-else color="white" size="60">mdi-account</v-icon>
           </v-avatar>
+
+          <input
+            :v-show="false"
+            type="file"
+            accept=".jpeg,.jpg,.png,image/jpeg,image/png"
+            aria-label="upload image button"
+            @change="selectFile"
+          />
         </div>
         <v-form
           ref="form"
@@ -24,7 +32,6 @@
           height="200px"
           class="scroll"
           @scroll.passive="onScroll"
-
         >
           <v-text-field
             dense
@@ -101,39 +108,40 @@
           ></v-text-field>
 
           <div class="d-flex justify-center">
-
-          <div
-            v-if="isEditPress"
-            class="buttonWrapper d-flex justify-center pt-2 mt-2"
-          >
-            <v-btn
-              elevation="3"
-              height="40"
-              class="button indigo"
-              @click="editPress"
+            <div
+              v-if="isEditPress"
+              class="buttonWrapper d-flex justify-center pt-2 mt-2"
             >
-              Edit
-            </v-btn>
-          </div>
-          <div v-else class="buttonWrapper d-flex justify-space-around pt-2 mt-2">
-            <v-btn
-              elevation="3"
-              height="40"
-              class="button indigo"
-              @click="editPress"
+              <v-btn
+                elevation="3"
+                height="40"
+                class="button indigo"
+                @click="editPress"
+              >
+                Edit
+              </v-btn>
+            </div>
+            <div
+              v-else
+              class="buttonWrapper d-flex justify-space-around pt-2 mt-2"
             >
-              Cancel
-            </v-btn>
-            <v-btn
-              elevation="3"
-              height="40"
-              class="button indigo"
-              @click="editPress"
-            >
-              Save Changes
-            </v-btn>
-          </div>
-
+              <v-btn
+                elevation="3"
+                height="40"
+                class="button indigo"
+                @click="editPress"
+              >
+                Cancel
+              </v-btn>
+              <v-btn
+                elevation="3"
+                height="40"
+                class="button indigo"
+                @click="editPress"
+              >
+                Save Changes
+              </v-btn>
+            </div>
           </div>
         </v-form>
       </v-col>
@@ -148,6 +156,7 @@ export default {
   data() {
     return {
       isEditPress: true,
+      imgSrc: ''
     }
   },
   computed: {
@@ -158,6 +167,31 @@ export default {
   methods: {
     editPress() {
       this.isEditPress = !this.isEditPress
+    },
+    async selectFile(e) {
+      const file = e.target.files[0]
+
+      /* Make sure file exists */
+      if (!file) return
+
+      /* create a reader */
+      const readData = (f) =>
+        new Promise((resolve) => {
+          const reader = new FileReader()
+          reader.onloadend = () => resolve(reader.result)
+          reader.readAsDataURL(f)
+        })
+
+      /* Read data */
+      const data = await readData(file)
+
+      /* upload the converted data */
+      const instance = await this.$cloudinary.upload(data, {
+        folder: 'utime/user',
+        uploadPreset: 'userProfile',
+      })
+
+      this.imgSrc = instance.url
     },
   },
 }
