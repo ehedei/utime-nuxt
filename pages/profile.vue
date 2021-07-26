@@ -16,14 +16,18 @@
             <img v-if="user.image" :src="user.image" :alt="user.username" />
             <v-icon v-else color="white" size="60">mdi-account</v-icon>
           </v-avatar>
+          <div v-if="!isEditPress">
+            <v-file-input v-model="img" show-size truncate-length="15" @click.prevent="$refs.fileInput.click()"></v-file-input>
 
-          <input
-            :v-show="false"
-            type="file"
-            accept=".jpeg,.jpg,.png,image/jpeg,image/png"
-            aria-label="upload image button"
-            @change="selectFile"
-          />
+            <input
+              ref="fileInput"
+              v-show="false"
+              type="file"
+              accept=".jpeg,.jpg,.png,image/jpeg,image/png"
+              aria-label="upload image button"
+              @change="showFile"
+            />
+          </div>
         </div>
         <v-form
           ref="form"
@@ -63,6 +67,7 @@
           ></v-text-field>
 
           <v-text-field
+            v-if="!isEditPress"
             class="inputtext"
             filled
             dense
@@ -183,6 +188,7 @@ export default {
     return {
       isEditPress: true,
       imgSrc: '',
+      img: null,
       passwordview: true,
       username: '',
       firstName: '',
@@ -209,11 +215,12 @@ export default {
     editPress() {
       this.isEditPress = !this.isEditPress
     },
-    async selectFile(e) {
-      const file = e.target.files[0]
+    showFile(e) {
+      console.log(e.target.files[0])
+      this.img = e.target.files[0]
+    },
 
-      /* Make sure file exists */
-      if (!file) return
+    async selectFile(e) {
 
       /* create a reader */
       const readData = (f) =>
@@ -224,7 +231,7 @@ export default {
         })
 
       /* Read data */
-      const data = await readData(file)
+      const data = await readData(this.img)
 
       /* upload the converted data */
       const instance = await this.$cloudinary.upload(data, {
@@ -234,6 +241,11 @@ export default {
 
       this.imgSrc = instance.url
     },
+    async updateUser() {
+      if(this.img) {
+        await this.selectFile()
+      } // Cuando esto acabe, la imagen estará en servidor y this.imgSrc contendrá la nueva ruta de la imagen que debe ir a base de datos
+    }
   },
 }
 </script>
