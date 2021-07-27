@@ -4,7 +4,9 @@
       <v-stepper-items>
         <v-stepper-content step="1" class="px-0">
           <v-card class="mb-12 px-0" color="transparent" flat>
-            <v-card-title class="justify-center h1">Select a Specialty</v-card-title>
+            <v-card-title class="justify-center h1"
+              >Select a Specialty</v-card-title
+            >
             <SpecialtySelector
               :specialties="specialties"
               @specialtySelected="assignSpecialty"
@@ -24,7 +26,9 @@
 
         <v-stepper-content step="2" class="px-0">
           <v-card class="mb-12" color="transparent" flat>
-            <v-card-title class="justify-center">Choose your Doctor</v-card-title>
+            <v-card-title class="justify-center"
+              >Choose your Doctor</v-card-title
+            >
             <DoctorSelector
               :specialty="specialty"
               @selectDoctor="assignDoctor"
@@ -44,7 +48,9 @@
 
         <v-stepper-content step="3" class="px-0">
           <v-card class="mb-12" color="transparent" flat>
-            <v-card-title class="justify-center">Schedule your Appointment</v-card-title>
+            <v-card-title class="justify-center"
+              >Schedule your Appointment</v-card-title
+            >
             <AppointmentSelector
               :doctorId="doctorId"
               @saveAppointment="saveAppointment"
@@ -112,38 +118,38 @@ export default {
     return {
       e1: 1,
       specialty: {},
-      doctorId: "",
-      message: "",
+      doctorId: '',
+      message: '',
       dialog: false,
-    };
+    }
   },
   methods: {
     async assignSpecialty(id) {
-      const specialty = await this.$getSpecialtyById(id);
-      this.specialty = specialty;
-      this.e1++;
+      const specialty = await this.$getSpecialtyById(id)
+      this.specialty = specialty
+      this.e1++
     },
     assignDoctor(id) {
-      this.doctorId = id;
-      this.e1++;
+      this.doctorId = id
+      this.e1++
     },
     async saveAppointment(appointmentId) {
       const id = this.$auth.user._id
 
       try {
-        await this.$createBookingIntoUser(id, appointmentId);
-        this.message = "Booking confirmed";
+        await this.$createBookingIntoUser(id, appointmentId)
+        this.message = 'Booking confirmed'
       } catch (error) {
-        this.message = "Something goes wrong. Try again";
+        this.message = 'Something goes wrong. Try again'
       } finally {
-        this.dialog = true;
+        this.dialog = true
       }
     },
     back() {
-      this.$router.push('/home');
+      this.$router.push('/home')
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

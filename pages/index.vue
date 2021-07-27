@@ -1,14 +1,38 @@
 <template>
   <v-container fill-height>
     <v-row>
-      <v-col cols="12" class="d-flex flex-column flex-sm-row justify-center align-center mt-10">
-        <v-img v-if="$vuetify.breakpoint.xsOnly" max-height="70" max-width="70" class="order-2 order-sm-1" :src="logo"></v-img>
-        <v-img v-else max-height="150" max-width="150" class="order-2 order-sm-1" :src="logo"></v-img>
-        <h1 class="indigo--text text--darken-3 text-center ml-sm-3 order-1 order-sm-2">CLINIC VITA</h1>
+      <v-col
+        cols="12"
+        class="d-flex flex-column flex-sm-row justify-center align-center mt-10"
+      >
+        <v-img
+          v-if="$vuetify.breakpoint.xsOnly"
+          max-height="70"
+          max-width="70"
+          class="order-2 order-sm-1"
+          :src="logo"
+        ></v-img>
+        <v-img
+          v-else
+          max-height="150"
+          max-width="150"
+          class="order-2 order-sm-1"
+          :src="logo"
+        ></v-img>
+        <h1
+          class="
+            indigo--text
+            text--darken-3 text-center
+            ml-sm-3
+            order-1 order-sm-2
+          "
+        >
+          CLINIC VITA
+        </h1>
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" class="d-flex flex-column justify-center align-center ">
+      <v-col cols="12" class="d-flex flex-column justify-center align-center">
         <h2 class="indigo--text text-center font-weight-medium">
           <em>Powered by Utime</em>
         </h2>
@@ -51,7 +75,8 @@ export default {
   data() {
     return {
       logo: 'https://res.cloudinary.com/dfuhm3pot/image/upload/v1627048988/utime/logos/vita_r5npxv.svg',
-      utimelogo: 'https://res.cloudinary.com/dfuhm3pot/image/upload/v1627049063/utime/logos/utime-gold_qnkidh.svg',
+      utimelogo:
+        'https://res.cloudinary.com/dfuhm3pot/image/upload/v1627049063/utime/logos/utime-gold_qnkidh.svg',
       auth: this.$auth.loggedIn,
     }
   },

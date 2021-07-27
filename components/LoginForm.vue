@@ -43,7 +43,9 @@
         <v-card-text>{{ message }}</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="indigo darken-1" text @click="dialog = false"> Accept </v-btn>
+          <v-btn color="indigo darken-1" text @click="dialog = false">
+            Accept
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

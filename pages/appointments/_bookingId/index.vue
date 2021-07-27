@@ -105,7 +105,11 @@
         <v-card-text>Do you want to cancel this appointment?</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="grey darken-1" text @click="cancelDialog = !cancelDialog">
+          <v-btn
+            color="grey darken-1"
+            text
+            @click="cancelDialog = !cancelDialog"
+          >
             Back
           </v-btn>
           <v-btn color="orange darken-4" text @click="cancelAppointment">
@@ -121,7 +125,12 @@
         <v-card-text>{{ message }}</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn v-if="cancelled" color="indigo darken-1" text @click="$router.push('/appointments')">
+          <v-btn
+            v-if="cancelled"
+            color="indigo darken-1"
+            text
+            @click="$router.push('/appointments')"
+          >
             Accept
           </v-btn>
           <v-btn v-else color="indigo darken-1" text @click="dialog = !dialog">
@@ -148,7 +157,7 @@ export default {
       message: '',
       dialog: false,
       cancelled: false,
-      cancelDialog: false
+      cancelDialog: false,
     }
   },
   computed: {

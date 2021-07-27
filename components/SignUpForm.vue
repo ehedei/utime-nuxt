@@ -89,11 +89,7 @@
           ></v-text-field>
 
           <div class="d-flex justify-center pt-2 mt-2">
-            <v-btn
-              elevation="3"
-              class="button indigo"
-              @click="validate"
-            >
+            <v-btn elevation="3" class="button indigo" @click="validate">
               SignUp
             </v-btn>
           </div>
@@ -217,7 +213,8 @@ export default {
 }
 
 ::-webkit-scrollbar {
-   width: 10px; left:-100px;
+  width: 10px;
+  left: -100px;
 }
 ::-webkit-scrollbar-thumb {
   border: 2px solid rgba(0, 0, 0, 0);
@@ -225,10 +222,8 @@ export default {
   -webkit-border-radius: 100px;
   background-color: rgba(0, 0, 0, 0.15);
 }
-.v-form
-.v-text-field >>> .v-input__slot {
+.v-form .v-text-field >>> .v-input__slot {
   background: rgb(255, 255, 255) !important;
-
 }
 .v-text-field >>> .v-input__slot::before {
   border-style: none;

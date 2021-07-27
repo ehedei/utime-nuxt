@@ -11,7 +11,7 @@
                   $vuetify.breakpoint.xsOnly ? 'nameMobile' : 'name',
                   $vuetify.breakpoint.smOnly ? 'nameSmall' : 'name',
                   'grey--text',
-                  'text--lighten-5'
+                  'text--lighten-5',
                 ]"
               >
                 CLINIC VITA

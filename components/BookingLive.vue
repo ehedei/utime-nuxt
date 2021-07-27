@@ -155,7 +155,7 @@ export default {
       actualAppointment: null,
       nextAppointment: null,
       appointments: [],
-      modalDisposable: true
+      modalDisposable: true,
     }
   },
   computed: {
@@ -201,8 +201,11 @@ export default {
       }
     },
     showModal() {
-      return (this.nextAppointment?._id === this.appointment._id) && this.modalDisposable
-    }
+      return (
+        this.nextAppointment?._id === this.appointment._id &&
+        this.modalDisposable
+      )
+    },
   },
   methods: {
     getDate(date) {

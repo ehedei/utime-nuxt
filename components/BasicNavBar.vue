@@ -22,7 +22,7 @@
           <v-list-item-content class="justify-center">
             <div class="mx-auto text-center">
               <v-avatar color="indigo darken-4 white--text my-2 elevation-3">
-                <img v-if="user.image" :src="user.image" :alt="user.username" />
+                <img v-if="user.image" :src="user.image" :alt="user.username" cover/>
                 <v-icon v-else color="white">mdi-account</v-icon>
               </v-avatar>
               <h3 class="mt-1">{{ user.username }}</h3>

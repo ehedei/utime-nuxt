@@ -67,10 +67,12 @@ export default {
     getBirthDate() {
       let date = ''
 
-      if(this.user.birthdate) { date = moment(this.user.birthdate).format('DD-MM-YYYY') }
+      if (this.user.birthdate) {
+        date = moment(this.user.birthdate).format('DD-MM-YYYY')
+      }
 
       return date
-    }
+    },
   },
 }
 </script>
