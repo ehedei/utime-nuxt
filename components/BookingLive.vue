@@ -73,12 +73,12 @@
         text
         color="indigo"
         class="text--darken-4"
-        @click="$parent.cancelAppointment"
+        @click="$parent.questionCancelAppointment"
         >Cancel Appointment</v-btn
       >
     </v-card-actions>
 
-    <v-dialog v-model="areYouNext" persistent :width="width">
+    <v-dialog v-model="showModal" persistent :width="width">
       <v-card dark color="indigo" class="darken-4" elevation="6">
         <v-card-title class="text-h6"> Live </v-card-title>
         <v-card-text class="pb-0">
@@ -129,8 +129,8 @@
             text
             color="white"
             class="my-3 py-6 text-decoration-underline"
-            @click="$parent.cancelAppointment"
-            >Cancel Appointment</v-btn
+            @click="modalDisposable = !modalDisposable"
+            >Close</v-btn
           >
           <v-spacer></v-spacer>
         </v-card-actions>
@@ -155,6 +155,7 @@ export default {
       actualAppointment: null,
       nextAppointment: null,
       appointments: [],
+      modalDisposable: true
     }
   },
   computed: {
@@ -199,6 +200,9 @@ export default {
           return 290
       }
     },
+    showModal() {
+      return (this.nextAppointment?._id === this.appointment._id) && this.modalDisposable
+    }
   },
   methods: {
     getDate(date) {
