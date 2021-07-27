@@ -12,8 +12,9 @@
           <v-avatar
             color="indigo darken-4 white--text my-2 elevation-3"
             :size="getImgSize"
+
           >
-            <img v-if="user.image" :src="user.image" :alt="user.username" />
+            <v-img v-if="user.image" :src="user.image" :alt="user.username" cover></v-img>
             <v-icon v-else color="white" size="60">mdi-account</v-icon>
           </v-avatar>
           <div v-if="!isEditPress" id="imgInput" class="pe-2">
@@ -226,9 +227,7 @@ export default {
       return this.$auth.user
     },
     getImgSize() {
-      return this.$vuetify.breakpoint.smAndDown
-              ? '150'
-              : '200'
+      return this.$vuetify.breakpoint.smAndDown ? '150' : '200'
     },
   },
   methods: {
@@ -295,13 +294,23 @@ export default {
       }
       try {
         const newUser = await this.$updateUser(updatedUser)
-        this.img = null
         this.$auth.setUser(newUser)
+        this.img = null
+
         this.message = 'User updated'
       } catch (error) {
         this.message = 'Something went wrong. Try again!'
       }
       this.isEditPress = !this.isEditPress
+      this.username = ''
+      this.email = ''
+      this.firstName = ''
+      this.lastName = ''
+      this.password = ''
+      this.mobile = ''
+      this.isEditPress = true
+      this.passwordview = true
+      this.isDisable = true
       this.dialog = true
     },
     closeModal() {

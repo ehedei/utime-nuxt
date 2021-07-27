@@ -12,7 +12,7 @@
             v-if="info.booking.user.image"
             height="250"
             :src="info.booking.user.image"
-            contain
+            cover
           ></v-img>
           <v-icon v-else size="100" color="white"> mdi-account </v-icon>
         </v-avatar>
