@@ -58,7 +58,7 @@
               text
               color="indigo"
               class="text--darken-4"
-              @click="cancelAppointment"
+              @click="questionCancelAppointment"
               >Cancel Appointment</v-btn
             >
           </v-card-actions>
@@ -99,6 +99,22 @@
         </v-card-actions>
       </v-card>
     </v-row>
+    <v-dialog v-model="cancelDialog" persistent max-width="290">
+      <v-card>
+        <v-card-title class="text-h5"> Cancel Appointment </v-card-title>
+        <v-card-text>Do you want to cancel this appointment?</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="grey darken-1" text @click="cancelDialog = !cancelDialog">
+            Back
+          </v-btn>
+          <v-btn color="orange darken-4" text @click="cancelAppointment">
+            Cancel Appointment
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
     <v-dialog v-model="dialog" persistent max-width="290">
       <v-card>
         <v-card-title class="text-h5"> Cancel Appointment </v-card-title>
@@ -131,7 +147,8 @@ export default {
     return {
       message: '',
       dialog: false,
-      cancelled: false
+      cancelled: false,
+      cancelDialog: false
     }
   },
   computed: {
@@ -150,6 +167,9 @@ export default {
     },
     getTime(date) {
       return moment.utc(date).format('LT')
+    },
+    questionCancelAppointment() {
+      this.cancelDialog = true
     },
     async cancelAppointment() {
       try {
