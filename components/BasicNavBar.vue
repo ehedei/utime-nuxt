@@ -38,7 +38,7 @@
       light
       class="d-flex flex-column"
     >
-      <v-card min-width="200px">
+      <v-card min-width="200px" to="/profile">
         <v-list-item-content class="justify-center">
           <div class="mx-auto text-center py-4">
             <v-avatar color="indigo darken-4 white--text my-2 elevation-3">
