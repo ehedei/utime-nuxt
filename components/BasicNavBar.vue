@@ -104,7 +104,7 @@
 
           <v-list-item v-if="user.role !== 'user'" to="/waiting-room">
             <v-list-item-icon>
-              <v-icon>mdi-room-service</v-icon>
+              <v-icon>mdi-clock-time-four</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Waiting Room</v-list-item-title>
           </v-list-item>

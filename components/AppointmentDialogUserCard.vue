@@ -1,33 +1,16 @@
 <template>
   <v-card-text class="px-10">
     <div class="my-3 text-subtitle-1 d-flex justify-space-between">
-      <div>
-        Name: <strong>{{ getFullName || 'Unknown' }}</strong>
-      </div>
-      <div>
-        Birthdate: <strong>{{ getBirthDate || 'Unknown' }}</strong>
-      </div>
+      Name: <strong class="text-right">{{ getFullName || 'Unknown' }}</strong>
     </div>
     <div class="my-3 text-subtitle-1 d-flex justify-space-between">
-      <div>
-        Mobile: <strong>{{ user.mobile || 'Unknown' }}</strong>
-      </div>
-      <div>
-        Phone: <strong>{{ user.phone || 'Unknown' }}</strong>
-      </div>
+      Birthdate: <strong>{{ getBirthDate || 'Unknown' }}</strong>
     </div>
-    <div class="mt-3 text-subtitle-1">Adress:</div>
-    <div class="mt-2 mx-5 text-subtitle-4 d-flex justify-space-between">
-      <span>Direction:</span><strong>{{ getDirection || 'Unknown' }}</strong>
+    <div class="my-3 text-subtitle-1 d-flex justify-space-between">
+      Mobile: <strong>{{ user.mobile || 'Unknown' }}</strong>
     </div>
-    <div class="mt-2 mx-5 text-subtitle-4 d-flex justify-space-between">
-      <span>City:</span><strong>{{ getCity || 'Unknown' }}</strong>
-    </div>
-    <div class="mt-2 mx-5 text-subtitle-4 d-flex justify-space-between">
-      <span>State:</span><strong>{{ getState || 'Unknown' }}</strong>
-    </div>
-    <div class="mt-2 mx-5 text-subtitle-4 d-flex justify-space-between">
-      <span>Country:</span><strong>{{ getCountry || 'Unknown' }}</strong>
+    <div class="my-3 text-subtitle-1 d-flex justify-space-between">
+      Phone: <strong>{{ user.phone || 'Unknown' }}</strong>
     </div>
   </v-card-text>
 </template>

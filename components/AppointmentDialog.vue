@@ -23,7 +23,7 @@
       </v-card-subtitle>
       <v-card-text>
         <v-divider class="mx-4 mb-3"></v-divider>
-        <div class="text-subtitle-1">
+        <div class="text-subtitle-1 d-flex justify-space-between">
           Appointment Date: <strong>{{ getDate(info.start) }}</strong>
         </div>
         <div class="mb-4 text-subtitle-1 d-flex justify-space-between">

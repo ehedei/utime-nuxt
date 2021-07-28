@@ -26,7 +26,7 @@ export default {
     return {
       routes: [
         {
-          icon: 'mdi-newspaper-variant',
+          icon: 'mdi-newspaper-variant-outline',
           to: '/appointments',
           title: 'Appointments',
           allUsers: true,
@@ -49,7 +49,7 @@ export default {
           allUsers: true,
         },
         {
-          icon: 'mdi-room-service-outline',
+          icon: 'mdi-clock-time-four-outline',
           to: '/waiting-room',
           title: 'Waiting Room',
         },
