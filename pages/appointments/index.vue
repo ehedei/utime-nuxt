@@ -1,11 +1,12 @@
 <template>
-  <v-container>
+  <v-container fill-height class="d-flex flex-column justify-start">
     <AppointmentList
-      v-if="getAppointmentsFromToday.length > 0"
+      v-if="getAppointmentsFromToday.length"
       :today="today"
       :appointments="getAppointmentsFromToday"
+      class="mt-4"
     ></AppointmentList>
-    <AppointmentTimeline class="mt-7"
+    <AppointmentTimeline class="mt-6"
       :appointments="getNextAppointments"
     ></AppointmentTimeline>
   </v-container>

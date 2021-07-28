@@ -86,7 +86,7 @@
             active-class="orange--text text--darken-3"
           >
             <v-list-item-icon class="ml-3">
-              <v-icon>mdi-pencil</v-icon>
+              <v-icon>mdi-plus-circle</v-icon>
             </v-list-item-icon>
             <v-list-item-title>New Appointment</v-list-item-title>
           </v-list-item>
