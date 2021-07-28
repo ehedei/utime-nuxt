@@ -364,27 +364,7 @@ export default {
   padding: 0%;
   font-size: 0.75rem;
 }
-.scroll {
-  height: 50vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
-  border-radius: 10px;
-  background-color: #f5f5f500;
-}
 
-::-webkit-scrollbar {
-  width: 10px;
-  left: -100px;
-}
-::-webkit-scrollbar-thumb {
-  border: 2px solid rgba(0, 0, 0, 0);
-  background-clip: padding-box;
-  -webkit-border-radius: 100px;
-  background-color: rgba(0, 0, 0, 0.15);
-}
 .v-form .v-text-field >>> .v-input__slot {
   background: rgb(255, 255, 255) !important;
 }
