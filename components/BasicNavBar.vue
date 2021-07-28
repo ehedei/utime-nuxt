@@ -25,7 +25,10 @@
       >
 
       <v-spacer></v-spacer>
-      <v-app-bar-nav-icon v-if="$vuetify.breakpoint.smAndDown" @click="drawer = true"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        v-if="$vuetify.breakpoint.smAndDown"
+        @click="drawer = true"
+      ></v-app-bar-nav-icon>
     </v-app-bar>
     <v-navigation-drawer
       v-model="drawer"
@@ -33,10 +36,11 @@
       :permanent="$vuetify.breakpoint.mdAndUp ? true : false"
       :right="$vuetify.breakpoint.smAndDown ? true : false"
       light
+      class="d-flex flex-column"
     >
       <v-card min-width="200px">
         <v-list-item-content class="justify-center">
-          <div class="mx-auto text-center">
+          <div class="mx-auto text-center py-4">
             <v-avatar color="indigo darken-4 white--text my-2 elevation-3">
               <v-img
                 v-if="user.image"
@@ -106,14 +110,17 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
-      <v-list-item-content class="justify-center">
-        <div class="mx-auto text-center">
-          <v-divider class="my-3"></v-divider>
-          <v-btn depressed block text @click="logout"
-            ><v-icon class="me-1">mdi-exit-to-app</v-icon> Logout
-          </v-btn>
-        </div>
-      </v-list-item-content>
+
+      <template v-slot:append>
+        <v-list-item-content class="justify-center">
+          <div class="mx-auto text-center">
+            <v-divider class="my-3"></v-divider>
+            <v-btn depressed block text @click="logout"
+              ><v-icon class="me-1">mdi-exit-to-app</v-icon> Logout
+            </v-btn>
+          </div>
+        </v-list-item-content>
+      </template>
     </v-navigation-drawer>
   </div>
 </template>
