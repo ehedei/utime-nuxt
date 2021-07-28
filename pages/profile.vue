@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-row class="d-flex justify-center">
-      <v-col cols="10" lg="7">
+    <v-row class="d-flex justify-center mt-7">
+      <v-col cols="10" lg="6">
         <div
           :class="[
             $vuetify.breakpoint.smAndDown
@@ -9,24 +9,44 @@
               : 'profilePicture',
           ]"
         >
-          <v-avatar
-            color="indigo darken-4 white--text my-2 elevation-3"
-            :size="getImgSize"
-
+          <v-badge
+            avatar
+            bordered
+            overlap
+            color="orange"
+            :value="!isEditPress"
+            offset-x="25"
+            offset-y="25"
           >
-            <v-img v-if="user.image" :src="user.image" :alt="user.username" cover></v-img>
-            <v-icon v-else color="white" size="60">mdi-account</v-icon>
-          </v-avatar>
-          <div v-if="!isEditPress" id="imgInput" class="pe-2">
+            <template v-slot:badge>
+              <v-avatar>
+                <v-icon
+                >mdi-autorenew</v-icon>
+              </v-avatar>
+            </template>
+            <v-avatar
+              color="indigo darken-4 white--text my-2 elevation-3"
+              :size="getImgSize"
+              @click="activateImgInput"
+              :class="[isEditPress ? '' : 'clickable']"
+            >
+              <v-img
+                v-if="user.image"
+                :src="user.image"
+                :alt="user.username"
+                cover
+              ></v-img>
+              <v-icon v-else color="white" size="60" >mdi-account</v-icon>
+            </v-avatar>
+          </v-badge>
+
+          <div v-show="img" id="imgInput" class="pe-2">
             <v-file-input
+              ref="input"
+              accept="image/gif, image/jpeg, image/png"
               v-model="img"
-              height="50"
-              rounded
-              background-color="white"
               show-size
               truncate-length="15"
-              placeholder="Insert new Image"
-              @change="selectFile"
             ></v-file-input>
           </div>
         </div>
@@ -227,7 +247,7 @@ export default {
       return this.$auth.user
     },
     getImgSize() {
-      return this.$vuetify.breakpoint.smAndDown ? '150' : '200'
+      return this.$vuetify.breakpoint.smAndDown ? '125' : '175'
     },
   },
   methods: {
@@ -322,13 +342,15 @@ export default {
         this.updateUser()
       }
     },
+    activateImgInput() {
+      if(!this.isEditPress) {
+        this.$refs.input.$refs.input.click()
+      }
+    },
   },
 }
 </script>
 <style scoped>
-.v-input >>> .v-input__prepend-outer {
-  margin-top: 12px !important;
-}
 
 .buttonWrapper {
   width: 500px;
@@ -337,12 +359,12 @@ export default {
 .profilePicture {
   text-align: center;
   margin-top: -50px;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
 .profilePictureSmall {
   text-align: center;
-  margin-bottom: 25px;
   margin-top: -25px;
+  margin-bottom: 20px;
 }
 .button {
   color: rgb(255, 255, 255) !important;
@@ -415,5 +437,8 @@ export default {
 }
 .inputtext {
   border-radius: 10px;
+}
+.clickable {
+  cursor: pointer;
 }
 </style>
