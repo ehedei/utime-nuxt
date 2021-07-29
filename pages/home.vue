@@ -6,7 +6,7 @@
         :key="i"
         cols="12"
         md="5"
-        lg="3"
+        lg="4"
         class="mx-8 my-8 my-md-12 justify-center"
       >
         <CardButton
