@@ -1,6 +1,6 @@
 # Description
 
-Utime is a queue management app where you can make appointments and see how a specific appointment is progrtessing in real time. 
+Utime is a queue management app where you can make appointments and see how a specific appointment is progressing in real time. 
 
 # utime-frontend
 
